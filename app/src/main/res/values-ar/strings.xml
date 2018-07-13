@@ -1,0 +1,123 @@
+<resources>
+    <string name="app_name">DrewelDriver</string>
+    <string name="API_KEY">AIzaSyDbWNBqFpi-wp88j0cPminqVWJ5qEuL3dw</string>
+    <string name="orders">الطلبات</string>
+    <string name="completed">اكتملت العملية</string>
+    <string name="earning">المكاسب</string>
+    <string name="pickup_from_vendor">لاقط من المستودع</string>
+    <string name="placed_on">وضع على:</string>
+    <string name="status">الحالة:</string>
+    <string name="delivery_date">تاريخ التوصيل:</string>
+    <string name="pickup_address">عنوان الاستلام:</string>
+    <string name="order_items">المنتجات المطلوبة:</string>
+    <string name="details">تفاصيل</string>
+    <string name="delivered">تم التوصيل</string>
+    <string name="accept_order">تم قبول الطلب</string>
+    <string name="decline_order">تم رفض الطلب</string>
+    <string name="new_order">طلب جديد</string>
+    <string name="accepted">تمت الموافقة</string>
+    <string name="balance">الرصيد</string>
+    <string name="add_money">اضف مبلغا من المال</string>
+    <string name="add_money_">M301.314,83.298l20.159-29.272c1.197-1.74,0.899-4.024-0.666-5.104c-1.563-1.074-3.805-0.543-4.993,1.199L294.863,80.53c-13.807-5.439-29.139-8.47-45.299-8.47c-16.16,0-31.496,3.028-45.302,8.47l-20.948-30.41c-1.201-1.74-3.439-2.273-5.003-1.199c-1.564,1.077-1.861,3.362-0.664,5.104l20.166,29.272c-32.063,14.916-54.548,43.26-57.413,76.34h218.316C355.861,126.557,333.375,98.214,301.314,83.298
+    </string>
+    <string name="have_a_promo_code">هل يمتلك الرمز الترويجي</string>
+    <string name="current_earnings">المكاسب الحالية</string>
+    <string name="order_date_and_time">تاريخ و وقت الطلب:</string>
+    <string name="due_payment">تاريخ استحقاق الدفع</string>
+    <string name="Press_again_to_exit">اضغط مرة أخرى للخروج.</string>
+    <string name="decline">رفض</string>
+    <string name="accept">قبول</string>
+    <string name="sign_up"><u>تسجيل الدخول</u></string>
+    <string name="don_t_have_an_account">ليس لديك حساب؟</string>
+    <string name="FORGOT_PASSWORD"><u>هل نسيت كلمة المرور</u></string>
+    <string name="active_internet_connection">لا يوجد إتصال نشط بالشبكة.</string>
+    <string name="please_enter_email_id">الرجاء إدخال البريد الإلكتروني.</string>
+    <string name="please_enter_valid_email">الرجاء إدخال البريد الإلكتروني النشط.</string>
+    <string name="please_enter_password">الرجاء ادخال كلمة المرور.</string>
+    <!--<string name="please_enter_valid_password">كلمة المرور يجب أن تكون 6 أرقام طويلة.</string>-->
+    <string name="enter_old_password">الرجاء ادخال كلمة المرور القديم</string>
+    <string name="forchange_pass">كلمة المرور يجب ان لا يكون مماثلا لكلمة المرور القديم.</string>
+    <string name="forconpass">الرجاء ادخال تأكيد كلمة المرور.</string>
+    <string name="formatch">كلمة المرور غير مطابق.</string>
+    <string name="please_enter_valid_password">الرمز السري يجب ان يحتوي على حرف هيجائي واحد على الاقل  وخانة رقمية واحدة.</string>
+    <string name="please_check_your_internet_connection">الرجاء التأكد من اتصالك بالشبكة.</string>
+    <string name="amount">المبلغ بالدولار </string>
+    <string name="settings">إعدادات</string>
+    <string name="feedback">ردود الفعل</string>
+    <string name="about_us">حول التطبيق</string>
+    <string name="rate_app">قييم التطبيق</string>
+    <string name="logout">تسجيل الخروج</string>
+    <string name="my_earnings">مكاسبي</string>
+    <string name="my_account">حسابي</string>
+    <string name="username">اسم المستخدم</string>
+    <string name="country">الدولة</string>
+    <string name="zip_code">الرمز البريدي</string>
+    <string name="distance">المسافة</string>
+    <string name="vehicle_number">رقم السيارة</string>
+    <string name="please_enter_firstname">يرجى إدخال الأسم الأول.</string>
+    <string name="please_enter_lastname">يرجى إدخال ألإسم الأخير.</string>
+    <string name="please_enter_vehicle_number">يرجى إدخال رقم السيارة.</string>
+    <string name="how_it_works">كيف نعمل</string>
+    <string name="choose_prefered_language">أختار اللغة المفضلة لك.</string>
+    <string name="enter_new_password">أدخل كلمة المرور الجديد</string>
+    <string name="turn_on">تشغيل</string>
+    <string name="notif_turn_on">يرجى تشغيل الإشعارات لإبلاغي عن طرق دريول.</string>
+    <string name="select_country">إختار الدولة</string>
+    <string name="withdrawal">سحب</string>
+    <string name="New">جديد</string>
+    <string name="out_for_delivery">خارج للتوصيل</string>
+    <string name="send">أرسل</string>
+    <string name="ok">تم</string>
+    <string name="logout_message">هل متأكد بأنك ترغب في الخروج؟</string>
+    <string name="no_record_found">لا توجد سجلات</string>
+    <!--<string name="orders">Orders</string>-->
+
+    <!--facebook account octal.team1@gmail.com / octal@123-->
+
+    <string name="login">تسجيل الدخول</string>
+    <string name="forgot_password">نسيت كلمة المرور؟</string>
+
+    <string name="email_address">البريد الإلكتروني</string>
+    <string name="password">كلمة المرور</string>
+    <string name="first_name">الأسم الأول</string>
+    <string name="last_name">الأسم الأخير</string>
+    <string name="phone_number">رقم الهاتف</string>
+    <string name="confirm_password">تأكيد كلمة المرور</string>
+    <string name="search">البحث</string>
+
+
+    <string name="more">المزيد</string>
+    <string name="omr">ريال عماني</string>
+
+
+    <string name="items">المنتجات</string>
+    <string name="wallet">المحفظة</string>
+    <string name="contact_us">تواصل معنا</string>
+    <string name="sign_out">تسجيل الخروج</string>
+    <string name="change_language">تغيير اللغة</string>
+    <string name="notification">إعلام</string>
+    <string name="faq">تعليمات</string>
+    <string name="name">الإسم</string>
+    <string name="delivery_address">عنوان التوصيل</string>
+    <string name="save">حفظ</string>
+
+
+    <string name="cancel">إلغاء</string>
+
+    <string name="notifications">الإشعارات</string>
+    <string name="change_password">تغيير كلمة المرور</string>
+    <string name="about_app">حول التطبيق</string>
+    <string name="notification_setting">إعدادات الإشعار</string>
+    <string name="old_password">الرمز السري السابق</string>
+    <string name="new_password">رمز سري جديد</string>
+    <string name="english">English</string>
+    <string name="arabic">عربي</string>
+    <string name="terms_of_use">شروطنا</string>
+    <string name="app_version">إصدار التطبيق</string>
+    <string name="privacy_policy">سياسة الخصوصية</string>
+    <string name="order_id">رقم الطلب</string>
+    <string name="completed_orders">طلبات مكتملة</string>
+    <string name="delivery_time">وقت التوصيل</string>
+    <string name="order">أطلب</string>
+
+</resources>

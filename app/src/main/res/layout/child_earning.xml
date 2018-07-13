@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rel_new"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10sdp">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/order_id"
+            style="@style/Text12GreyStyleView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:src="@android:drawable/ic_menu_camera"
+            android:text="@string/order_id"
+            android:textColor="@color/grey" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_order_id_number"
+            style="@style/Text12GreyStyleView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_toEndOf="@+id/order_id"
+            android:text="#896522"
+            android:textColor="@color/black" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/order_date_time"
+            style="@style/Text12GreyStyleView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/order_id"
+            android:text="@string/order_date_and_time" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_order_date_time"
+            style="@style/Text12GreyStyleView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_order_id_number"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_toEndOf="@+id/order_date_time"
+            android:text="5 Jan, 2018,9:20 am"
+            android:textColor="@color/black" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_earning_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:text="$95"
+            android:textStyle="bold"
+            style="@style/Text14OrangeStyleView"/>
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@color/violet" />
+</LinearLayout>

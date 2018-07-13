@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary_verylight"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/_16sdp"
+        android:paddingStart="@dimen/_16sdp">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            style="@style/Text12GreyStyleView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/_5sdp"
+            android:text="New Order Assigned"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/_13sdp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_order_date_time"
+            style="@style/Text12GreyStyleView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_order_id_number"
+            android:layout_toEndOf="@+id/order_date_time"
+            android:paddingVertical="@dimen/_5sdp"
+            android:text="2 minutes ago"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_10sdp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@color/violet" />
+</LinearLayout>

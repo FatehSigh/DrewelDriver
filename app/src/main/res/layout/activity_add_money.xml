@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            tools:contentInsetStart="0dp"
+            tools:popupTheme="@style/AppTheme.AppBarOverlay">
+
+            <TextView
+                android:id="@+id/txt_toolbar"
+                style="@style/ToolbarTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"
+                android:text="Add Money" />
+
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
+        android:id="@+id/rel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/rel_new"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/violet"
+            android:gravity="center_vertical"
+            android:padding="@dimen/_5sdp">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/blc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/balance"
+                style="@style/Text12GreyStyleView"
+                android:textColor="@color/black" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_blc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_toRightOf="@+id/blc"
+                android:gravity="center_vertical"
+                android:padding="@dimen/_10sdp"
+                android:text="$ 500.00"
+                style="@style/Text12OrangeStyleView"
+                android:textColor="@color/colorPrimary" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/imv_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:background="@color/violet"
+                android:src="@android:drawable/ic_menu_my_calendar"
+                android:text="$ 500.00"
+                android:textColor="@color/colorPrimary" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_new_new"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rel_new"
+            android:background="@color/white"
+            android:padding="@dimen/_10sdp">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/til_add_money"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/amount">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edt_profile_first_name"
+                    style="@style/EditTextHint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:paddingStart="@dimen/_10sdp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_accept_order"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/til_add_money"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/accept_bg"
+                android:gravity="center"
+                android:text="@string/add_money"
+                android:textColor="@color/white"
+                style="@style/Text12OrangeStyleView"/>
+
+        </RelativeLayout>
+    </RelativeLayout>
+    <!-- <TextView
+         android:id="@+id/tv_have_promo_code"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:imeOptions="actionNext"
+         android:layout_alignParentEnd="true"
+         android:inputType="number"
+         android:layout_toRightOf="@+id/til_add_money"
+         android:text="@string/have_a_promo_code" />-->
+
+</LinearLayout>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            tools:contentInsetStart="0dp"
+            tools:popupTheme="@style/AppTheme.AppBarOverlay">
+
+            <TextView
+                android:id="@+id/txt_toolbar"
+                style="@style/ToolbarTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"
+                android:text="@string/about_app" />
+
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_howto"
+        style="@style/Text12GreyStyleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:drawableEnd="@mipmap/arrow"
+        android:drawablePadding="@dimen/_10sdp"
+        android:gravity="center_vertical|start"
+        android:padding="@dimen/_13sdp"
+        android:text="@string/how_it_works"
+        android:textColor="@color/dark_gray" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@android:color/darker_gray" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_terms"
+        style="@style/Text12GreyStyleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:drawableEnd="@mipmap/arrow"
+        android:drawablePadding="@dimen/_10sdp"
+        android:gravity="center_vertical|start"
+        android:padding="@dimen/_13sdp"
+        android:text="@string/terms_of_use"
+        android:textColor="@color/dark_gray" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@android:color/darker_gray" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_privacy"
+        style="@style/Text12GreyStyleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:drawableEnd="@mipmap/arrow"
+        android:drawablePadding="@dimen/_10sdp"
+        android:gravity="center_vertical|start"
+        android:padding="@dimen/_13sdp"
+        android:text="@string/privacy_policy"
+        android:textColor="@color/dark_gray" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@android:color/darker_gray" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_faq"
+        style="@style/Text12GreyStyleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:background="@color/white"
+        android:drawableEnd="@mipmap/arrow"
+        android:drawablePadding="@dimen/_10sdp"
+        android:gravity="center_vertical|start"
+        android:padding="@dimen/_13sdp"
+        android:text="@string/faq"
+        android:textColor="@color/dark_gray" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@android:color/darker_gray" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/Text12GreyStyleView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:drawablePadding="@dimen/_10sdp"
+            android:gravity="center_vertical|start"
+            android:padding="@dimen/_13sdp"
+            android:text="@string/app_version"
+            android:textColor="@color/dark_gray" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_appversion"
+            style="@style/Text12GreyStyleView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="@color/white"
+            android:drawablePadding="@dimen/_10sdp"
+            android:gravity="center_vertical|start"
+            android:padding="@dimen/_13sdp"
+            android:text="@string/app_version"
+            android:textColor="@color/dark_gray" />
+    </RelativeLayout>
+</LinearLayout>

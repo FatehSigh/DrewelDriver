@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_order"
+        android:icon="@drawable/order_selector"
+        android:title="@string/orders" />
+
+    <item
+        android:id="@+id/navigation_completed"
+        android:icon="@drawable/completed_selector"
+        android:title="@string/completed" />
+
+    <!--<item
+        android:visible="false"
+        android:id="@+id/navigation_earning"
+        android:icon="@drawable/earning_selector"
+        android:title="@string/earning" />-->
+    <item
+        android:id="@+id/navigation_more"
+        android:icon="@drawable/more_selector"
+        android:title="@string/more" />
+</menu>

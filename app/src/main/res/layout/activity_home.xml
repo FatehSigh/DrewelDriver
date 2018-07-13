@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.octalsoftware.drewel.HomeActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_55sdp"
+            android:background="@color/colorPrimary"
+            app:contentInsetStart="0dp"
+            android:paddingEnd="@dimen/_10sdp"
+            app:popupTheme="@style/AppTheme.AppBarOverlay">
+
+            <TextView
+                android:id="@+id/txt_toolbar"
+                style="@style/ToolbarTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"
+                android:text="@string/orders" />
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/switch_off_on_notification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+
+                android:checked="true"
+                android:clickable="true"
+                android:gravity="end"
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                android:theme="@style/SwitchTheme2" />
+<RelativeLayout
+    android:id="@+id/rl_notif"
+    android:layout_gravity="end"
+    android:layout_width="@dimen/_40sdp"
+    android:layout_height="@dimen/_40sdp">
+            <ImageView
+                android:id="@+id/imv_notification_bell"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+
+                android:padding="@dimen/_10sdp"
+                android:src="@mipmap/notification"
+                android:theme="@style/SwitchTheme"
+                android:visibility="visible" />
+    <TextView
+        android:id="@+id/txt_counter"
+        android:text="1"
+        android:visibility="gone"
+        android:layout_alignParentEnd="true"
+        android:textSize="@dimen/_10sdp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:padding="02dp"
+        android:gravity="center"
+        android:fontFamily="@font/roboto_regular"
+        android:background="@drawable/circle_red"
+        android:textColor="@color/grey"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"/>
+</RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:layout_marginTop="?attr/actionBarSize"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintTop_toBottomOf="@+id/appBar" />
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        android:theme="@style/Widget.BottomNavigationView"
+        android:background="?android:attr/windowBackground"
+        app:itemIconTint="@drawable/bottom_nav_icon_color_selector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/home_menu"
+        tools:override="true" />
+</android.support.constraint.ConstraintLayout>

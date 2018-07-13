@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            tools:contentInsetStart="0dp"
+            tools:popupTheme="@style/AppTheme.AppBarOverlay">
+
+            <TextView
+                android:id="@+id/txt_toolbar"
+                style="@style/ToolbarTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"
+                android:text="Order #00123" />
+
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/rel"
+            android:padding="@dimen/_16sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rel_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/order_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:src="@android:drawable/ic_menu_camera"
+                    android:text="@string/placed_on"
+                    style="@style/Text12GreyStyleView" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_order_place_on_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="7th May 18 at 4:40pm"
+                    style="@style/Text12OrangeStyleView" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/placed_on"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/order_id"
+                    android:src="@android:drawable/ic_menu_camera"
+                    android:text="@string/items"
+                    style="@style/Text12GreyStyleView" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_total_items"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignStart="@+id/tv_order_place_on_date"
+                    android:layout_below="@+id/tv_order_place_on_date"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:text="7"
+                    style="@style/Text12OrangeStyleView" />
+
+                <View
+                    android:id="@+id/view_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_below="@+id/tv_total_items"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@color/violet" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/view_id"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:src="@android:drawable/ic_menu_camera"
+                    android:text="@string/status"
+                    style="@style/Text12GreyStyleView" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/view_id"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_toEndOf="@+id/status"
+                    android:text="@string/new_order"
+                    android:textColor="@color/green"
+                    style="@style/Text12GreyStyleView" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/delivery_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/status"
+                    android:src="@android:drawable/ic_menu_camera"
+                    android:text="@string/delivery_date"
+                    style="@style/Text10GreyStyleView" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_delivery_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_status"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_toEndOf="@+id/delivery_date"
+                    android:text="Tue, 9 May'18"
+                    android:textColor="@color/black"
+                    style="@style/Text10GreyStyleView" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_order_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/tv_status"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:text="$950"
+                   style="@style/Text14OrangeStyleView"
+                    android:textStyle="bold" />
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/delivery_time"
+                    style="@style/Text10GreyStyleView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/delivery_date"
+                    android:src="@android:drawable/ic_menu_camera"
+                    android:text="@string/delivery_time" />
+
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_delivery_time"
+                    style="@style/Text10GreyStyleView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_delivery_date"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_toEndOf="@+id/delivery_date"
+                    android:text="Tue, 9 May'18"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rel_new"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.CardView
+                        android:visibility="gone"
+                        android:id="@+id/card_view_pickup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:elevation="@dimen/_3sdp"
+                        card_view:cardCornerRadius="@dimen/_6sdp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:padding="@dimen/_10sdp">
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/pick_up_address"
+                                style="@style/Text12GreyStyleView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:text="@string/pickup_address" />
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/tv_pickup_address_in_miles"
+                                style="@style/Text12OrangeStyleView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:layout_toEndOf="@id/pick_up_address"
+                                android:text="3 miles " />
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/tv_pickup_order_to_person"
+                                style="@style/Text12OrangeStyleView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/pick_up_address"
+                                android:text="James Roger" />
+
+                            <ImageView
+                                android:id="@+id/imv_placeicon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tv_pickup_order_to_person"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:src="@mipmap/send" />
+
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/tv_pickup_order_address"
+                                style="@style/Text10GreyStyleView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tv_pickup_order_to_person"
+                                android:layout_marginStart="@dimen/_30sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_toEndOf="@+id/imv_placeicon"
+                                android:text="140 ,Central Spine, Vidhayadhar Nagar -Jaipur(302023)" />
+
+                            <Button
+                                android:id="@+id/btn_call_pickup_person"
+                                style="@style/Text10GreyStyleView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_28sdp"
+                                android:layout_below="@+id/tv_pickup_order_address"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:background="@drawable/call_bg"
+                                android:drawableEnd="@mipmap/call"
+                                android:drawablePadding="@dimen/_5sdp"
+                                android:gravity="center"
+                                android:paddingStart="@dimen/_10sdp"
+                                android:text="         + 00-000-000-0000       "
+                                android:textColor="@color/white" />
+                        </RelativeLayout>
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/card_view_delivery_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/card_view_pickup"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:elevation="@dimen/_3sdp"
+                        card_view:cardCornerRadius="@dimen/_6sdp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:padding="@dimen/_10sdp">
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/delivery_address"
+                                style="@style/Text12GreyStyleView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:text="@string/delivery_address" />
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/tv_delivery_address_in_miles"
+                                style="@style/Text12OrangeStyleView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:layout_toEndOf="@id/delivery_address"
+                                android:text="3 miles " />
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/tv_delivery_order_to_person"
+                                style="@style/Text12OrangeStyleView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/tv_delivery_address_in_miles"
+                                android:text="Sara Thomas" />
+
+                            <ImageView
+                                android:id="@+id/imv_placeicon_delivery"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tv_delivery_order_to_person"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:src="@mipmap/send" />
+
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/tv_delivery_order_address"
+                                style="@style/Text10GreyStyleView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tv_delivery_order_to_person"
+                                android:layout_marginStart="@dimen/_30sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_toEndOf="@+id/imv_placeicon_delivery"
+                                android:text="140 ,Central Spine, Vidhayadhar Nagar -Jaipur(302023)" />
+
+                            <Button
+                                android:id="@+id/btn_call_delivery_person"
+                                style="@style/Text10GreyStyleView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_28sdp"
+                                android:layout_below="@+id/tv_delivery_order_address"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:background="@drawable/call_bg"
+                                android:drawableEnd="@mipmap/call"
+                                android:drawablePadding="@dimen/_5sdp"
+                                android:gravity="center"
+                                android:paddingStart="@dimen/_10sdp"
+                                android:text="         + 00-000-000-0000       "
+                                android:textColor="@color/white" />
+                        </RelativeLayout>
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
+            </LinearLayout>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/order_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/ll_address"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:src="@android:drawable/ic_menu_camera"
+                android:text="@string/order_items"
+                android:textColor="@color/dark_gray"
+                style="@style/Text12GreyStyleView"
+
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_order_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_address"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_toEndOf="@+id/order_items"
+                android:text="7"
+                style="@style/Text12OrangeStyleView" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_order_items"
+                android:layout_gravity="center_vertical"
+                android:descendantFocusability="blocksDescendants" />
+
+
+            <View
+                android:id="@+id/view_new"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_below="@+id/recyclerView"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/violet" />
+
+            <LinearLayout
+                android:id="@+id/lin_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view_new"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btn_accept_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_28sdp"
+                    android:layout_below="@+id/tv_order_delivery_address"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:background="@drawable/accept_bg"
+                    android:gravity="center"
+
+                    android:text="@string/accept_order"
+                    android:textColor="@color/white"
+                    style="@style/Text10GreyStyleView" />
+
+                <Button
+                    android:id="@+id/btn_decline_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_28sdp"
+                    android:layout_below="@+id/tv_order_delivery_address"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/decline_bg"
+                    android:gravity="center"
+                    android:text="@string/decline_order"
+                    android:textColor="@color/colorPrimary"
+                    style="@style/Text10GreyStyleView" />
+            </LinearLayout>
+        </RelativeLayout>
+
+    </ScrollView>
+</LinearLayout>
