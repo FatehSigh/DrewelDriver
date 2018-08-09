@@ -1,5 +1,6 @@
 package com.octalsoftware.drewel.fragment.Adapter;
 
+import android.content.Context;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,7 +11,9 @@ import android.widget.ImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.octalsoftware.drewel.R;
 import com.octalsoftware.drewel.application.DrewelApplication;
+import com.octalsoftware.drewel.constant.Tags;
 import com.octalsoftware.drewel.model.ProductModel;
+import com.octalsoftware.drewel.utils.Prefs;
 
 import java.util.List;
 
@@ -23,9 +26,11 @@ import butterknife.ButterKnife;
 
 public class SimilarOrderItemAdapter extends RecyclerView.Adapter<SimilarOrderItemAdapter.ViewHolder> {
     List<ProductModel> products;
+    Context context;
 
-    public SimilarOrderItemAdapter(List<ProductModel> products) {
+    public SimilarOrderItemAdapter(List<ProductModel> products, Context context) {
         this.products = products;
+        this.context = context;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -51,7 +56,10 @@ public class SimilarOrderItemAdapter extends RecyclerView.Adapter<SimilarOrderIt
     public void onBindViewHolder(ViewHolder holder, int position) {
         ProductModel productModel = products.get(position);
         ImageLoader.getInstance().displayImage(productModel.product_image, holder.imv_product, DrewelApplication.options);
-        holder.tv_name.setText(productModel.product_name);
+        if (new Prefs(context).getDefaultLanguage().equals(Tags.LANGUAGE_ARABIC))
+            holder.tv_name.setText(productModel.ar_product_name);
+        else
+            holder.tv_name.setText(productModel.product_name);
     }
 
     @Override

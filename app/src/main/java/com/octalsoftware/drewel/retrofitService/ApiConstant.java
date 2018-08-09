@@ -20,6 +20,7 @@ public interface ApiConstant {
     String earningList = "earningList";
     String get_notifications = "delivery_boy_get_notifications";
     String read_notification = "read_notification";
+    String delete_notification = "delivery_boy_delete_notification";
     /*header*/
     String timestamp = "timestamp";
     String appkey = "appkey";

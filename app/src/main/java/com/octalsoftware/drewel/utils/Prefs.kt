@@ -86,7 +86,7 @@ class Prefs {
     }
 
     fun getDefaultLanguage(): String {
-        val PrefValue = mSharedPreferences!!.getString(Tags.LANGUAGE, null)
+        val PrefValue = mSharedPreferences!!.getString(Tags.LANGUAGE, Tags.LANGUAGE_ENGLISH)
         AppDelegate.LogP("getStringValue => editorkey = $Tags.LANGUAGE, editorvalue = $PrefValue")
         return PrefValue
 

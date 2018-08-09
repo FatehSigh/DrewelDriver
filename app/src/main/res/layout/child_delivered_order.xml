@@ -421,6 +421,15 @@
                             android:paddingStart="@dimen/_10sdp"
                             android:text="         + 00-000-000-0000       "
                             android:textColor="@color/white" />
+                        <ImageView
+                            android:id="@+id/imv_track_order"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:tint="@color/black"
+                            android:layout_below="@+id/tv_delivery_order_address"
+                            android:src="@mipmap/send" />
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>
             </LinearLayout>

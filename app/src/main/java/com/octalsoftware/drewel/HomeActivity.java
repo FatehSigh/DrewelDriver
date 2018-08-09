@@ -406,21 +406,21 @@ public class HomeActivity extends AppCompatActivity implements ResponseInterface
         switch (webServiceTag) {
             case ApiConstant.delivery_boy_notification_status:
                 AppDelegate.Companion.hideProgressDialog(this);
-                AppDelegate.Companion.showToast(this, successMsg);
+//                AppDelegate.Companion.showToast(this, successMsg);
                 UserDataModel userDataModel1 = new Prefs(this).getUserdata();
                 userDataModel1.is_notification = 1 + "";
                 new Prefs(this).setUserdata(userDataModel1);
                 break;
             case ApiConstant.updateLocation:
                 AppDelegate.Companion.hideProgressDialog(this);
-                AppDelegate.Companion.showToast(this, successMsg);
+//                AppDelegate.Companion.showToast(this, successMsg);
                 if (switch_off_on_notification.isChecked()) {
                     switch_off_on_notification.setChecked(false);
                 } else
                     switch_off_on_notification.setChecked(true);
                 break;
             case ApiConstant.driverStatus:
-                AppDelegate.Companion.showToast(this, successMsg);
+//                AppDelegate.Companion.showToast(this, successMsg);
                 break;
             case ApiConstant.get_notifications:
                 AppDelegate.Companion.LogT("Response==>" + message);

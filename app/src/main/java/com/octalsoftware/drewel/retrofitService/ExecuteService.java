@@ -93,7 +93,7 @@ public class ExecuteService {
             if (AppDelegate.Companion.isValidString((stringStringEntry.getValue())))
                 bodyHashMap.put(stringStringEntry.getKey(),/* getRequestBodyString*/(stringStringEntry.getValue()));
         }
-        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), (new JSONObject(bodyHashMap)).toString());
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(bodyHashMap)).toString());
 
         return body;
     }
@@ -105,7 +105,7 @@ public class ExecuteService {
             if (AppDelegate.Companion.isValidString((stringStringEntry.getValue())))
                 bodyHashMap.put(stringStringEntry.getKey(),/* getRequestBodyString*/(stringStringEntry.getValue()));
         }
-        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), (new JSONObject(bodyHashMap)).toString());
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(bodyHashMap)).toString());
 
         HashMap<String, RequestBody> requestBodyHashMap = new HashMap<>();
         bodyHashMap.put(Tags.data, body);

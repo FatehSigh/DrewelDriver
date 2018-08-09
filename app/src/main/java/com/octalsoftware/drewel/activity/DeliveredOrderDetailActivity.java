@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -88,7 +89,8 @@ public class DeliveredOrderDetailActivity extends AppCompatActivity implements R
     @BindView(R.id.txt_norecordFound)
     AppCompatTextView txt_norecordFound;
     boolean isCalled = false;
-
+    @BindView(R.id.imv_track_order)
+    ImageView imv_track_order;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -179,7 +181,7 @@ public class DeliveredOrderDetailActivity extends AppCompatActivity implements R
     private void setAdapter(List<ProductModel> products) {
         LinearLayoutManager llm = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(llm);
-        myadapter = new SimilarOrderItemAdapter(products);
+        myadapter = new SimilarOrderItemAdapter(products,this);
         recyclerView.setAdapter(myadapter);
     }
 
@@ -297,15 +299,42 @@ public class DeliveredOrderDetailActivity extends AppCompatActivity implements R
             AppDelegate.Companion.LogE(e);
         }
 
-        tv_status.setText(orderDetailModel.Order.order_delivery_status);
+//        tv_status.setText(orderDetailModel.Order.order_delivery_status);
+        switch (orderDetailModel.Order.order_delivery_status) {
+            case "Cancelled":
+                tv_status.setText(getString(R.string.Cancelled));
+                break;
+            case "Not Cancelled":
+                tv_status.setText(getString(R.string.NotCancelled));
+                break;
+            case "Pending":
+                tv_status.setText(getString(R.string.Pending));
+                break;
+            case "Under Packaging":
+                tv_status.setText(getString(R.string.UnderPackaging));
+                break;
+            case "Ready To Deliver":
+                tv_status.setText(getString(R.string.ReadyToDeliver));
+                break;
+            case "Delivered":
+                tv_status.setText(getString(R.string.delivered));
+                break;
+        }
+
         tv_order_amount.setText(orderDetailModel.Order.total_amount+" "+ getString(R.string.omr));
         DecimalFormat df = new DecimalFormat(".##");
 //        if (orderModel != null && AppDelegate.Companion.isValidString(orderModel.distance))
-        tv_delivery_address_in_miles.setText(df.format(Double.parseDouble(orderDetailModel.Order.distance)) + " Miles");
+        tv_delivery_address_in_miles.setText(df.format(Double.parseDouble(orderDetailModel.Order.distance)) + " "+getString(R.string.miles));
         tv_delivery_order_to_person.setText(orderDetailModel.Order.deliver_to);
         tv_delivery_order_address.setText(orderDetailModel.Order.delivery_address);
         btn_call_delivery_person.setText(orderDetailModel.Order.deliver_mobile);
-
+        imv_track_order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               startActivity(new Intent(DeliveredOrderDetailActivity.this, TrackOrderActivity.class).putExtra(Tags.LAT, orderDetailModel.Order.delivery_latitude).putExtra(Tags.LNG, orderDetailModel.Order.delivery_longitude)
+                );
+            }
+        });
     }
 
     @Override

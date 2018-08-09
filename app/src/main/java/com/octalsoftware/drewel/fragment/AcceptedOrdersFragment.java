@@ -177,7 +177,7 @@ public class AcceptedOrdersFragment extends Fragment implements View.OnClickList
         if (!isAdded())
             return;
 
-        AppDelegate.Companion.showToast(getActivity(), message);
+//        AppDelegate.Companion.showToast(getActivity(), message);
     }
 
     @Override

@@ -2,16 +2,19 @@ package com.octalsoftware.drewel.fragment.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.octalsoftware.drewel.AppDelegate;
 import com.octalsoftware.drewel.R;
+import com.octalsoftware.drewel.activity.TrackOrderActivity;
 import com.octalsoftware.drewel.constant.Tags;
 import com.octalsoftware.drewel.interfaces.OnClickItemListener;
 import com.octalsoftware.drewel.model.OrderModel;
@@ -61,6 +64,9 @@ public class DeliveredOrderFragmentAdapter extends RecyclerView.Adapter<Delivere
         public TextView btn_accept_order;
         @BindView(R.id.tv_delivery_time)
         AppCompatTextView tv_delivery_time;
+        @BindView(R.id.imv_track_order)
+        ImageView imv_track_order;
+
         ViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
@@ -100,11 +106,37 @@ public class DeliveredOrderFragmentAdapter extends RecyclerView.Adapter<Delivere
             AppDelegate.Companion.LogE(e);
         }
 
-        holder.tv_status.setText(orderModel.order_delivery_status);
-        holder.tv_order_amount.setText(String.format(" %s", orderModel.total_amount+" "+context.getString(R.string.omr)));
+        switch (orderModel.order_delivery_status) {
+            case "Cancelled":
+                holder.tv_status.setText(context.getString(R.string.Cancelled));
+                break;
+            case "Not Cancelled":
+                holder.tv_status.setText(context.getString(R.string.NotCancelled));
+                break;
+            case "Pending":
+                holder.tv_status.setText(context.getString(R.string.Pending));
+                break;
+            case "Under Packaging":
+                holder.tv_status.setText(context.getString(R.string.UnderPackaging));
+                break;
+            case "Ready To Deliver":
+                holder.tv_status.setText(context.getString(R.string.ReadyToDeliver));
+                break;
+            case "Delivered":
+                holder.tv_status.setText(context.getString(R.string.delivered));
+                break;
+        }
+        holder.imv_track_order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, TrackOrderActivity.class).putExtra(Tags.LAT, orderModel.delivery_latitude).putExtra(Tags.LNG, orderModel.delivery_longitude)
+                );
+            }
+        });
+        holder.tv_order_amount.setText(String.format(" %s", orderModel.total_amount + " " + context.getString(R.string.omr)));
         DecimalFormat df = new DecimalFormat(".##");
         if (AppDelegate.Companion.isValidString(orderModel.distance))
-            holder.tv_delivery_address_in_miles.setText(df.format(Double.parseDouble(orderModel.distance)) + " Miles");
+            holder.tv_delivery_address_in_miles.setText(df.format(Double.parseDouble(orderModel.distance)) + " " + context.getString(R.string.miles));
         holder.tv_delivery_order_to_person.setText(orderModel.deliver_to);
         holder.tv_delivery_order_address.setText(orderModel.delivery_address);
         holder.btn_call_delivery_person.setText(orderModel.deliver_mobile);

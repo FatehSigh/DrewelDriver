@@ -11,9 +11,11 @@ import android.widget.LinearLayout;
 
 import com.octalsoftware.drewel.AppDelegate;
 import com.octalsoftware.drewel.R;
+import com.octalsoftware.drewel.application.DrewelApplication;
 import com.octalsoftware.drewel.constant.Tags;
 import com.octalsoftware.drewel.interfaces.OnClickItemListener;
 import com.octalsoftware.drewel.model.NotificationsModel;
+import com.octalsoftware.drewel.utils.Prefs;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -70,7 +72,11 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
                     holder.ll_main.setBackgroundColor(context.getResources().getColor(R.color.white));
             else
                 holder.ll_main.setBackgroundColor(context.getResources().getColor(R.color.white));
-            holder.tv_title.setText(notificationsModel.message);
+//            if (new Prefs(context).getDefaultLanguage().equals(Tags.LANGUAGE_ARABIC))
+//                holder.tv_title.setText(notificationsModel.message_arabic);
+//            else
+                holder.tv_title.setText(notificationsModel.message);
+
             try {
                 Date startdate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(notificationsModel.created);
                 holder.tv_order_date_time.setText(new SimpleDateFormat("dd MMM ''yy    h:mm a").format(startdate));

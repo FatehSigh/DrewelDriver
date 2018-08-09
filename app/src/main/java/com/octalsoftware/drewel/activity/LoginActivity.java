@@ -56,6 +56,11 @@ public class LoginActivity extends AppCompatActivity implements ResponseInterfac
     protected void onResume() {
         super.onResume();
         AppDelegate.Companion.setLocale(new Prefs(this).getDefaultLanguage(), this);
+        if (new Prefs(this).getDefaultLanguage().equals(Tags.LANGUAGE_ENGLISH))
+            tv_change_language.setText(getText(R.string.english));
+        else
+            tv_change_language.setText(getText(R.string.arabic));
+
     }
 
     @Override

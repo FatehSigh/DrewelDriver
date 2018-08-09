@@ -5,12 +5,13 @@ import android.os.Parcelable;
 
 public class CategoryModel implements Parcelable {
     public String id;
-    public String category_name;
+    public String category_name,ar_category_name;
     public String img;
 
     protected CategoryModel(Parcel in) {
         id = in.readString();
         category_name = in.readString();
+        ar_category_name = in.readString();
         img = in.readString();
     }
 
@@ -18,6 +19,7 @@ public class CategoryModel implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
         dest.writeString(category_name);
+        dest.writeString(ar_category_name);
         dest.writeString(img);
     }
 
@@ -37,13 +39,4 @@ public class CategoryModel implements Parcelable {
             return new CategoryModel[size];
         }
     };
-
-    @Override
-    public String toString() {
-        return "CategoryModel{" +
-                "id='" + id + '\'' +
-                ", category_name='" + category_name + '\'' +
-                ", img='" + img + '\'' +
-                '}';
-    }
 }

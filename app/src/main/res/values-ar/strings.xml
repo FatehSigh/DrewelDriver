@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">DrewelDriver</string>
-    <string name="API_KEY">AIzaSyDbWNBqFpi-wp88j0cPminqVWJ5qEuL3dw</string>
+    <string name="API_KEY">AIzaSyDYbbuGTisRVD4SZTDDkK4V15hxVKqZwkI</string>
     <string name="orders">الطلبات</string>
     <string name="completed">اكتملت العملية</string>
     <string name="earning">المكاسب</string>
@@ -12,6 +12,7 @@
     <string name="order_items">المنتجات المطلوبة:</string>
     <string name="details">تفاصيل</string>
     <string name="delivered">تم التوصيل</string>
+    <string name="miles">ميل</string>
     <string name="accept_order">تم قبول الطلب</string>
     <string name="decline_order">تم رفض الطلب</string>
     <string name="new_order">طلب جديد</string>
@@ -24,7 +25,7 @@
     <string name="current_earnings">المكاسب الحالية</string>
     <string name="order_date_and_time">تاريخ و وقت الطلب:</string>
     <string name="due_payment">تاريخ استحقاق الدفع</string>
-    <string name="Press_again_to_exit">اضغط مرة أخرى للخروج.</string>
+    <string name="Press_again_to_exit">اضغط  للخروج.</string>
     <string name="decline">رفض</string>
     <string name="accept">قبول</string>
     <string name="sign_up"><u>تسجيل الدخول</u></string>
@@ -32,13 +33,13 @@
     <string name="FORGOT_PASSWORD"><u>هل نسيت كلمة المرور</u></string>
     <string name="active_internet_connection">لا يوجد إتصال نشط بالشبكة.</string>
     <string name="please_enter_email_id">الرجاء إدخال البريد الإلكتروني.</string>
-    <string name="please_enter_valid_email">الرجاء إدخال البريد الإلكتروني النشط.</string>
+    <string name="please_enter_valid_email">الرجاء إدخال بريد  إلكتروني مفعل.</string>
     <string name="please_enter_password">الرجاء ادخال كلمة المرور.</string>
     <!--<string name="please_enter_valid_password">كلمة المرور يجب أن تكون 6 أرقام طويلة.</string>-->
     <string name="enter_old_password">الرجاء ادخال كلمة المرور القديم</string>
     <string name="forchange_pass">كلمة المرور يجب ان لا يكون مماثلا لكلمة المرور القديم.</string>
     <string name="forconpass">الرجاء ادخال تأكيد كلمة المرور.</string>
-    <string name="formatch">كلمة المرور غير مطابق.</string>
+    <string name="formatch"> ال او تي بي غير مطابق.</string>
     <string name="please_enter_valid_password">الرمز السري يجب ان يحتوي على حرف هيجائي واحد على الاقل  وخانة رقمية واحدة.</string>
     <string name="please_check_your_internet_connection">الرجاء التأكد من اتصالك بالشبكة.</string>
     <string name="amount">المبلغ بالدولار </string>
@@ -61,15 +62,17 @@
     <string name="choose_prefered_language">أختار اللغة المفضلة لك.</string>
     <string name="enter_new_password">أدخل كلمة المرور الجديد</string>
     <string name="turn_on">تشغيل</string>
+    <string name="track_order">تتبع الطلب</string>
     <string name="notif_turn_on">يرجى تشغيل الإشعارات لإبلاغي عن طرق دريول.</string>
     <string name="select_country">إختار الدولة</string>
     <string name="withdrawal">سحب</string>
     <string name="New">جديد</string>
     <string name="out_for_delivery">خارج للتوصيل</string>
     <string name="send">أرسل</string>
-    <string name="ok">تم</string>
+    <string name="ok">تمام</string>
     <string name="logout_message">هل متأكد بأنك ترغب في الخروج؟</string>
     <string name="no_record_found">لا توجد سجلات</string>
+    <string name="delete">حذف</string>
     <!--<string name="orders">Orders</string>-->
 
     <!--facebook account octal.team1@gmail.com / octal@123-->
@@ -85,7 +88,6 @@
     <string name="confirm_password">تأكيد كلمة المرور</string>
     <string name="search">البحث</string>
 
-
     <string name="more">المزيد</string>
     <string name="omr">ريال عماني</string>
 
@@ -100,16 +102,17 @@
     <string name="name">الإسم</string>
     <string name="delivery_address">عنوان التوصيل</string>
     <string name="save">حفظ</string>
-
-
+    <string name="yes">نعما</string>
+    <string name="no">لا</string>
+    <string name="clear_all">حذف الكل</string>
     <string name="cancel">إلغاء</string>
 
     <string name="notifications">الإشعارات</string>
     <string name="change_password">تغيير كلمة المرور</string>
     <string name="about_app">حول التطبيق</string>
     <string name="notification_setting">إعدادات الإشعار</string>
-    <string name="old_password">الرمز السري السابق</string>
-    <string name="new_password">رمز سري جديد</string>
+    <string name="old_password">كلمة المرور القديمة</string>
+    <string name="new_password">كلمة المرور الجديدة</string>
     <string name="english">English</string>
     <string name="arabic">عربي</string>
     <string name="terms_of_use">شروطنا</string>
@@ -119,5 +122,17 @@
     <string name="completed_orders">طلبات مكتملة</string>
     <string name="delivery_time">وقت التوصيل</string>
     <string name="order">أطلب</string>
+    <string name="delete_all_notifications">هل أنت متأكد أنك تريد حذف كل الإشعارات ؟</string>
+    <string name="delete_notificaions">هل أنت متأكد أنك تريد حذف هذا الإشعار؟</string>
 
+    <string name="Kg">كلغ</string>
+    <string name="Gm">غرام</string>
+    <string name="Lt">لتر</string>
+    <string name="Ml">مل</string>
+    <string name="Cancelled">ملغي</string>
+    <string name="NotCancelled">غير ملغى</string>
+    <string name="Pending">قيد الانتظار</string>
+    <string name="UnderPackaging">الطلب قيد التنفيذ</string>
+    <string name="ReadyToDeliver">مستعد لتوصيل</string>
+    <string name="COD">الدفع عن الإستلام</string>
 </resources>

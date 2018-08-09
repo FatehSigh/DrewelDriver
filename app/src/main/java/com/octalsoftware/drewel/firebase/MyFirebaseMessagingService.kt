@@ -1,29 +1,26 @@
 package com.octalsoftware.drewel.firebase
 
-import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.os.Bundle
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.octalsoftware.drewel.AppDelegate
-import com.octalsoftware.drewel.HomeActivity
 import com.octalsoftware.drewel.R
 import com.octalsoftware.drewel.activity.AcceptedOrderDetailActivity
 import com.octalsoftware.drewel.activity.DeliveredOrderDetailActivity
 import com.octalsoftware.drewel.activity.LoginActivity
-import com.octalsoftware.drewel.activity.NotificationActivity
 import com.octalsoftware.drewel.constant.Tags
 import com.octalsoftware.drewel.model.PNModel
 import com.octalsoftware.drewel.utils.Prefs
 import org.json.JSONObject
 import java.util.*
 import android.app.NotificationChannel
+import com.octalsoftware.drewel.activity.NotificationActivity
 
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {

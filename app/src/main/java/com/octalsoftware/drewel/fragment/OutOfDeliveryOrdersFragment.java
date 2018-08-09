@@ -187,7 +187,7 @@ public class OutOfDeliveryOrdersFragment extends Fragment implements View.OnClic
         AppDelegate.Companion.hideProgressDialog(getActivity());
         if (!isAdded())
             return;
-        AppDelegate.Companion.showToast(getActivity(), message);
+//        AppDelegate.Companion.showToast(getActivity(), message);
     }
 
     @Override

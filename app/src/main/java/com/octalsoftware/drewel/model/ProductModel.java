@@ -8,15 +8,17 @@ import java.util.List;
 public class ProductModel implements Parcelable {
     public String product_id;
     public String quantity;
-    public String product_name;
+    public String product_name,ar_product_name;
     public String product_price;
     public String product_image;
     public List<CategoryModel> Category;
+
 
     protected ProductModel(Parcel in) {
         product_id = in.readString();
         quantity = in.readString();
         product_name = in.readString();
+        ar_product_name = in.readString();
         product_price = in.readString();
         product_image = in.readString();
         Category = in.createTypedArrayList(CategoryModel.CREATOR);
@@ -27,6 +29,7 @@ public class ProductModel implements Parcelable {
         dest.writeString(product_id);
         dest.writeString(quantity);
         dest.writeString(product_name);
+        dest.writeString(ar_product_name);
         dest.writeString(product_price);
         dest.writeString(product_image);
         dest.writeTypedList(Category);
@@ -48,16 +51,4 @@ public class ProductModel implements Parcelable {
             return new ProductModel[size];
         }
     };
-
-    @Override
-    public String toString() {
-        return "ProductModel{" +
-                "product_id='" + product_id + '\'' +
-                ", quantity='" + quantity + '\'' +
-                ", product_name='" + product_name + '\'' +
-                ", product_price='" + product_price + '\'' +
-                ", product_image='" + product_image + '\'' +
-                ", Category=" + Category +
-                '}';
-    }
 }

@@ -38,7 +38,7 @@
                     android:id="@+id/ll_change_language"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:gravity="center_vertical">
 
@@ -47,8 +47,6 @@
                         style="@style/ToolbarTitleStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
                         android:drawablePadding="@dimen/_5sdp"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="center_vertical"
@@ -59,8 +57,6 @@
                     <ImageView
                         android:layout_width="@dimen/_27sdp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
                         android:padding="@dimen/_5sdp"
                         android:src="@mipmap/downarrow" />
                 </LinearLayout>

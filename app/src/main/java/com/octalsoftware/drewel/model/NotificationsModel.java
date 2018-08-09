@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class NotificationsModel implements Parcelable {
-    public String id, type, message, send_by, name, is_read, created, user_id, unread,item_id;
+    public String id, type, message, send_by, name, is_read, created, user_id, unread,item_id,message_arabic;
 
     public NotificationsModel() {
     }
@@ -21,6 +21,7 @@ public class NotificationsModel implements Parcelable {
         user_id = in.readString();
         unread = in.readString();
         item_id = in.readString();
+        message_arabic = in.readString();
     }
 
     @Override
@@ -35,6 +36,7 @@ public class NotificationsModel implements Parcelable {
         dest.writeString(user_id);
         dest.writeString(unread);
         dest.writeString(item_id);
+        dest.writeString(message_arabic);
     }
 
     @Override

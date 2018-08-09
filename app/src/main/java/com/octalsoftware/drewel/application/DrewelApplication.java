@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
+import com.crashlytics.android.Crashlytics;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -11,6 +12,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.octalsoftware.drewel.AppDelegate;
+import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by sharukhb on 4/17/2018.
@@ -31,6 +33,7 @@ public class DrewelApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         drewelApplication = this;
         MultiDex.install(this);
         initImageLoader(this);
@@ -40,7 +43,7 @@ public class DrewelApplication extends Application {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         try {
-//            Fabric.with(this, Crashlytics());
+//            Fabric.with(this, new Crashlytics());
             MultiDex.install(this);
         } catch (Exception e) {
             AppDelegate.Companion.LogE(e);

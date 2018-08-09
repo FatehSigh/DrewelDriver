@@ -7,7 +7,7 @@ public class OrderModel implements Parcelable {
     public String order_id;
     public String deliver_to;
     public String deliver_mobile;
-    public String delivery_address;
+    public String delivery_address,delivery_latitude,delivery_longitude;
     public String distance;
     public String delivery_date;
     public String delivery_start_time;
@@ -27,6 +27,8 @@ public class OrderModel implements Parcelable {
         deliver_to = in.readString();
         deliver_mobile = in.readString();
         delivery_address = in.readString();
+        delivery_latitude = in.readString();
+        delivery_longitude = in.readString();
         distance = in.readString();
         delivery_date = in.readString();
         delivery_start_time = in.readString();
@@ -38,6 +40,14 @@ public class OrderModel implements Parcelable {
         order_status = in.readString();
         payment_mode = in.readString();
         created_at = in.readString();
+        transaction_id = in.readString();
+        net_amount = in.readString();
+        loyalty_points = in.readString();
+        loyalty_discount = in.readString();
+        coupon_discount = in.readString();
+        delivery_charges = in.readString();
+        order_date = in.readString();
+        cancelled_before = in.readString();
     }
 
     @Override
@@ -46,6 +56,8 @@ public class OrderModel implements Parcelable {
         dest.writeString(deliver_to);
         dest.writeString(deliver_mobile);
         dest.writeString(delivery_address);
+        dest.writeString(delivery_latitude);
+        dest.writeString(delivery_longitude);
         dest.writeString(distance);
         dest.writeString(delivery_date);
         dest.writeString(delivery_start_time);
@@ -57,6 +69,14 @@ public class OrderModel implements Parcelable {
         dest.writeString(order_status);
         dest.writeString(payment_mode);
         dest.writeString(created_at);
+        dest.writeString(transaction_id);
+        dest.writeString(net_amount);
+        dest.writeString(loyalty_points);
+        dest.writeString(loyalty_discount);
+        dest.writeString(coupon_discount);
+        dest.writeString(delivery_charges);
+        dest.writeString(order_date);
+        dest.writeString(cancelled_before);
     }
 
     @Override

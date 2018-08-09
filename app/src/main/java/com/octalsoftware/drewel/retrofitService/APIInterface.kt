@@ -1,5 +1,6 @@
 package com.octalsoftware.drewel.retrofitService
 
+import com.os.drewel.apicall.responsemodel.googledirectionresultmodel.DirectionResults
 import io.reactivex.Observable
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -32,4 +33,6 @@ interface APIInterface {
 
     @GET("{path1}/{path2}")
     fun dataRequestGetRxWithoutParam(@Path("path1") path1: String, @Path("path2") path2: String): Observable<Any>
+    @GET
+    fun getGoogleDirection(@Url url: String): Observable<DirectionResults>
 }

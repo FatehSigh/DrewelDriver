@@ -98,12 +98,31 @@ public class AcceptedOrderFragmentAdapter extends RecyclerView.Adapter<AcceptedO
         } catch (Exception e) {
             AppDelegate.Companion.LogE(e);
         }
-
-        holder.tv_status.setText(orderModel.order_delivery_status);
+        switch (orderModel.order_delivery_status) {
+            case "Cancelled":
+                holder.tv_status.setText(context.getString(R.string.Cancelled));
+                break;
+            case "Not Cancelled":
+                holder.tv_status.setText(context.getString(R.string.NotCancelled));
+                break;
+            case "Pending":
+                holder.tv_status.setText(context.getString(R.string.Pending));
+                break;
+            case "Under Packaging":
+                holder.tv_status.setText(context.getString(R.string.UnderPackaging));
+                break;
+            case "Ready To Deliver":
+                holder.tv_status.setText(context.getString(R.string.ReadyToDeliver));
+                break;
+            case "Delivered":
+                holder.tv_status.setText(context.getString(R.string.delivered));
+                break;
+        }
+//        holder.tv_status.setText(orderModel.order_delivery_status);
         holder.tv_order_amount.setText(orderModel.total_amount+" "+context.getString(R.string.omr));
         DecimalFormat df = new DecimalFormat(".##");
         if (AppDelegate.Companion.isValidString(orderModel.distance))
-            holder.tv_delivery_address_in_miles.setText(df.format(Double.parseDouble(orderModel.distance)) + " Miles");
+            holder.tv_delivery_address_in_miles.setText(df.format(Double.parseDouble(orderModel.distance)) + " "+context.getString(R.string.miles));
         holder.tv_delivery_order_to_person.setText(orderModel.deliver_to);
         holder.tv_delivery_order_address.setText(orderModel.delivery_address);
         holder.btn_call_delivery_person.setText(orderModel.deliver_mobile);

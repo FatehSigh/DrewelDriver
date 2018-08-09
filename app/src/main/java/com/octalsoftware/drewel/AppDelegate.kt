@@ -16,7 +16,12 @@ import com.octalsoftware.drewel.constant.Tags
 import java.util.*
 import java.util.regex.Pattern
 import android.widget.TextView
+import com.google.android.gms.maps.model.LatLng
 import com.octalsoftware.drewel.utils.DrewelProgressDialog
+import com.octalsoftware.drewel.utils.RouteDecode
+import com.os.drewel.apicall.responsemodel.googledirectionresultmodel.DirectionResults
+import com.os.drewel.apicall.responsemodel.googledirectionresultmodel.Location
+import com.os.drewel.apicall.responsemodel.googledirectionresultmodel.Steps
 
 class AppDelegate {
 
@@ -101,6 +106,58 @@ class AppDelegate {
                 Log.e("tag", "context is null at showing toast.", e)
             }
         }
+        fun getDirectionsUrl(origin: LatLng, dest: LatLng): String {
+
+            // Origin of route
+            val strOrigin = "origin=" + origin.latitude + "," + origin.longitude
+
+            // Destination of route
+            val strDest = "destination=" + dest.latitude + "," + dest.longitude
+
+            // Sensor enabled
+            val sensor = "sensor=false"
+
+            // Building the parameters to the web service
+            val parameters = "$strOrigin&$strDest&$sensor"
+
+            // Output format
+            val output = "json"
+           var mUrl = ("http://maps.googleapis.com/maps/api/directions/json?"
+                    + "origin=" + origin.latitude + "," + origin.longitude
+                    + "&destination=" + dest.latitude + "," +  dest.longitude
+                    + "&sensor=false&units=metric&mode=driving"+"key="+"AIzaSyCCQBye-fr_k0o6BIxppxwq-5gMRiMwq0A")
+            // Building the url to the web service
+//            return "https://maps.googleapis.com/maps/api/directions/$output?$parameters"
+            return mUrl
+        }
+
+        fun getStepsToDrawPolyline(directionResults: DirectionResults): ArrayList<LatLng> {
+            val routeList = ArrayList<LatLng>()
+            if (directionResults.routes!!.isNotEmpty()) {
+                var decodeList: ArrayList<LatLng>
+                val routeA = directionResults.routes[0]
+                if (routeA.legs!!.isNotEmpty()) {
+                    val steps = routeA.legs[0].steps
+                    var step: Steps
+                    var location: Location?
+                    var polyline: String?
+                    if (steps != null) {
+                        for (i in steps.indices) {
+                            step = steps.get(i)
+                            location = step.start_location
+                            routeList.add(LatLng(location!!.lat, location.lng))
+                            Log.i("zacharia", "Start Location :" + location.lat + ", " + location.lng)
+                            polyline = step.polyline!!.points
+                            decodeList = RouteDecode.decodePoly(polyline!!)
+                            routeList.addAll(decodeList)
+                            location = step.end_location
+                            routeList.add(LatLng(location!!.lat, location.lng))
+                        }
+                    }
+                }
+            }
+            return routeList
+        }
 
         private var mProgressDialog: ProgressDialog? = null
 
@@ -110,7 +167,7 @@ class AppDelegate {
             hideKeyBoard(mContext)
             try {
                 DrewelProgressDialog.getProgressDialog(mContext).showDialog1()
-            }catch (e : Exception){
+            } catch (e: Exception) {
 
             }
 //            try {
@@ -139,8 +196,7 @@ class AppDelegate {
         fun hideProgressDialog(mContext: Context?) {
             try {
                 DrewelProgressDialog.getProgressDialog(mContext).dismissDialog1()
-            }
-            catch (e:Exception){
+            } catch (e: Exception) {
                 AppDelegate.LogE(e)
             }
 //            try {

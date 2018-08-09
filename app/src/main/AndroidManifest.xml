@@ -89,6 +89,7 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <activity android:name=".activity.TrackOrderActivity" />
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -114,5 +115,8 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+       <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="e1c4efd62bc50256d5efd4fe31a7f83be3dadb94" />
     </application>
 </manifest>
