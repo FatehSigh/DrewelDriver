@@ -21,8 +21,10 @@ import com.octalsoftware.drewel.AppDelegate
 import com.octalsoftware.drewel.R
 import com.octalsoftware.drewel.application.DrewelApplication
 import com.octalsoftware.drewel.constant.Tags
+import com.octalsoftware.drewel.interfaces.AsyncGetDirection
 import com.octalsoftware.drewel.retrofitService.APIInterface
 import com.octalsoftware.drewel.retrofitService.RestClient
+import com.octalsoftware.drewel.utils.GetdirectionAsync
 import com.octalsoftware.drewel.utils.Prefs
 import com.octalsoftware.drewel.utils.Utils
 import io.reactivex.Observable
@@ -34,7 +36,19 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 
-class TrackOrderActivity : AppCompatActivity(), OnMapReadyCallback {
+class TrackOrderActivity : AppCompatActivity(), OnMapReadyCallback, AsyncGetDirection {
+    override fun OnDirectionCompleted(listLatLng: ArrayList<LatLng>?, state: String?) {
+    }
+
+    override fun OnDirectionPathCompleted(listLatLng: ArrayList<LatLng>?, state: String?) {
+        if (listLatLng!!.size > 0) {
+            val rectLine = PolylineOptions().width(10f).color(Color.RED)
+            // Adding route on the map
+            rectLine.addAll(listLatLng)
+
+            googleMap.addPolyline(rectLine)
+        }
+    }
 
 
     private lateinit var googleMap: GoogleMap
@@ -121,13 +135,16 @@ class TrackOrderActivity : AppCompatActivity(), OnMapReadyCallback {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         {
-//                            var latitude = Prefs(this@TrackOrderActivity).getStringValue(Tags.LAT, "")
-//                            var longitude = Prefs(this@TrackOrderActivity).getStringValue(Tags.LNG, "")
-                            var latitude = "25.262645"
-                            var longitude = "75.5156"
+                            var latitude = Prefs(this@TrackOrderActivity).getStringValue(Tags.LAT, "")
+                            var longitude = Prefs(this@TrackOrderActivity).getStringValue(Tags.LNG, "")
+//                            var latitude = "25.262645"
+//                            var longitude = "75.5156"
                             driverCurrentLocationLatLng = LatLng(latitude.toDouble(), longitude.toDouble())
                             driverCurrentMarker.position = driverCurrentLocationLatLng
-                            callGetDirectionApi()
+                            GetdirectionAsync(this, this,
+                                    driverCurrentLocationLatLng.latitude, driverCurrentLocationLatLng.longitude,deliveryLocationLatLng.latitude, deliveryLocationLatLng.longitude, "drive").execute()
+
+//                            callGetDirectionApi()
                         },
                         { error -> Log.e("TAG", "{$error.message}") },
                         { Log.d("TAG", "completed") })

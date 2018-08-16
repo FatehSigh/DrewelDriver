@@ -58,7 +58,7 @@
     <string name="please_enter_firstname">يرجى إدخال الأسم الأول.</string>
     <string name="please_enter_lastname">يرجى إدخال ألإسم الأخير.</string>
     <string name="please_enter_vehicle_number">يرجى إدخال رقم السيارة.</string>
-    <string name="how_it_works">كيف نعمل</string>
+    <string name="how_it_works">كيفية عمل التطبيق</string>
     <string name="choose_prefered_language">أختار اللغة المفضلة لك.</string>
     <string name="enter_new_password">أدخل كلمة المرور الجديد</string>
     <string name="turn_on">تشغيل</string>
@@ -83,7 +83,7 @@
     <string name="email_address">البريد الإلكتروني</string>
     <string name="password">كلمة المرور</string>
     <string name="first_name">الأسم الأول</string>
-    <string name="last_name">الأسم الأخير</string>
+    <string name="last_name">القبيلة</string>
     <string name="phone_number">رقم الهاتف</string>
     <string name="confirm_password">تأكيد كلمة المرور</string>
     <string name="search">البحث</string>
@@ -98,7 +98,7 @@
     <string name="sign_out">تسجيل الخروج</string>
     <string name="change_language">تغيير اللغة</string>
     <string name="notification">إعلام</string>
-    <string name="faq">تعليمات</string>
+    <string name="faq">اسئلة متكررة</string>
     <string name="name">الإسم</string>
     <string name="delivery_address">عنوان التوصيل</string>
     <string name="save">حفظ</string>
@@ -115,7 +115,7 @@
     <string name="new_password">كلمة المرور الجديدة</string>
     <string name="english">English</string>
     <string name="arabic">عربي</string>
-    <string name="terms_of_use">شروطنا</string>
+    <string name="terms_of_use">الشروط و الأحكام</string>
     <string name="app_version">إصدار التطبيق</string>
     <string name="privacy_policy">سياسة الخصوصية</string>
     <string name="order_id">رقم الطلب</string>

@@ -13,6 +13,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 26
+    useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.octalsoftware.drewel"
         minSdkVersion 17
