@@ -87,7 +87,7 @@ public class CompletedOrdersFragment extends Fragment implements View.OnClickLis
         }
     }
 
-    private void callNewOrderApi() {
+    public void callNewOrderApi() {
         AppDelegate.Companion.showProgressDialog(getActivity());
         HashMap<String, String> paramsHashMap = new HashMap<String, String>();
         paramsHashMap.put(Tags.language, new Prefs(getActivity()).getDefaultLanguage());

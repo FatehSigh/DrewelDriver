@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +15,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -48,14 +48,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class DeliveredOrderDetailActivity extends AppCompatActivity implements ResponseInterface {
+public class OrderDetailActivity extends AppCompatActivity implements ResponseInterface {
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
-    @BindView(R.id.tv_status)
-    TextView tv_status;
-
     private SimilarOrderItemAdapter myadapter;
-    private Toolbar mToolbar;
+
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.tv_status)
+    AppCompatTextView tv_status;
+    @BindView(R.id.tv_delivery_time)
+    AppCompatTextView tv_delivery_time;
     @BindView(R.id.tv_order_place_on_date)
     public TextView tv_order_place_on_date;
     @BindView(R.id.tv_total_items)
@@ -77,12 +80,10 @@ public class DeliveredOrderDetailActivity extends AppCompatActivity implements R
     @BindView(R.id.txt_toolbar)
     public TextView txt_toolbar;
     OrderModel orderModel;
-    PNModel pnModel;
-    NotificationsModel notificationModel;
     @BindView(R.id.btn_accept_order)
     Button btn_accept_order;
-    @BindView(R.id.tv_delivery_time)
-    AppCompatTextView tv_delivery_time;
+    PNModel pnModel;
+    NotificationsModel notificationModel;
     int From = 0;
     @BindView(R.id.scrollView)
     ScrollView scrollView;
@@ -91,14 +92,13 @@ public class DeliveredOrderDetailActivity extends AppCompatActivity implements R
     @BindView(R.id.txt_norecordFound)
     AppCompatTextView txt_norecordFound;
     boolean isCalled = false;
-    @BindView(R.id.imv_track_order)
-    ImageView imv_track_order;
     @BindView(R.id.tv_payment_mode)
     AppCompatTextView tv_payment_mode;
+String phone="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_delivered_order_detail);
+        setContentView(R.layout.activity_accepted_order_detail);
         ButterKnife.bind(this);
         initView();
         if (getIntent() != null && getIntent().getIntExtra(Tags.FROM, 0) == 1) {
@@ -111,48 +111,51 @@ public class DeliveredOrderDetailActivity extends AppCompatActivity implements R
             notificationModel = getIntent().getParcelableExtra(Tags.DATA);
             txt_toolbar.setText(String.format("%s #%s", getString(R.string.order), notificationModel.item_id));
             callCompletedOrderDetailApi(notificationModel.item_id);
-
         } else {
             orderModel = getIntent().getParcelableExtra(Tags.DATA);
             txt_toolbar.setText(String.format("%s #%s", getString(R.string.order), orderModel.order_id));
             callCompletedOrderDetailApi(orderModel.order_id);
         }
 
-
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        AppDelegate.Companion.setLocale(new Prefs(this).getDefaultLanguage(), this);
-//        callCompletedOrderDetailApi();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                if (From == 2) {
-                    if (isCalled) {
-                        Intent intent = new Intent();
-                        intent.putExtra(Tags.data, notificationModel);
-                        setResult(Activity.RESULT_OK, intent);
-                    }
-                } else if (From == 1) {
-                    startActivity(new Intent(this, HomeActivity.class));
-                }
-                finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+    public void onBackPressed() {
+        if (From == 2)
+            if (isCalled) {
+                Intent intent = new Intent();
+                intent.putExtra(Tags.data, notificationModel);
+                setResult(Activity.RESULT_OK, intent);
+            }
+        finish();
     }
 
     @OnClick({R.id.btn_accept_order, R.id.btn_call_delivery_person})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_accept_order:
-                callChangeOrderStatusrApi();
+                switch (orderDetailModel.Order.order_delivery_status) {
+                    case "Cancelled":
+                        tv_status.setText(getString(R.string.Cancelled));
+                        break;
+                    case "Not Cancelled":
+                        tv_status.setText(getString(R.string.NotCancelled));
+                        break;
+                    case "Pending":
+                        tv_status.setText(getString(R.string.Pending));
+                        callChangeOrderStatusrApi("2");
+                        break;
+                    case "Under Packaging":
+                        tv_status.setText(getString(R.string.UnderPackaging));
+                        break;
+                    case "Ready To Deliver":
+                        callChangeOrderStatusrApi("3");
+                        break;
+                    case "Delivered":
+//                        callChangeOrderStatusrApi("3");
+                        break;
+                }
+
                 break;
             case R.id.btn_call_delivery_person:
                 AppDelegate.Companion.call(this, orderDetailModel.Order.deliver_mobile);
@@ -161,21 +164,31 @@ public class DeliveredOrderDetailActivity extends AppCompatActivity implements R
     }
 
     @Override
-    public void onBackPressed() {
-        if (From == 2) {
-            if (isCalled) {
-                Intent intent = new Intent();
-                intent.putExtra(Tags.data, notificationModel);
-                setResult(Activity.RESULT_OK, intent);
-            }
-        } else if (From == 1) {
-            startActivity(new Intent(this, HomeActivity.class));
+    protected void onResume() {
+        super.onResume();
+        AppDelegate.Companion.setLocale(new Prefs(this).getDefaultLanguage(), this);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                if (From == 2)
+                    if (isCalled) {
+                        Intent intent = new Intent();
+                        intent.putExtra(Tags.data, notificationModel);
+                        setResult(Activity.RESULT_OK, intent);
+                    }
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        finish();
     }
 
     private void initView() {
-        mToolbar = findViewById(R.id.toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -184,7 +197,7 @@ public class DeliveredOrderDetailActivity extends AppCompatActivity implements R
     private void setAdapter(List<ProductModel> products) {
         LinearLayoutManager llm = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(llm);
-        myadapter = new SimilarOrderItemAdapter(products,this);
+        myadapter = new SimilarOrderItemAdapter(products, this);
         recyclerView.setAdapter(myadapter);
     }
 
@@ -218,7 +231,7 @@ public class DeliveredOrderDetailActivity extends AppCompatActivity implements R
         new ExecuteService().execute(this, true, this, requestModel);
     }
 
-    private void callChangeOrderStatusrApi() {
+    private void callChangeOrderStatusrApi(String status) {
         AppDelegate.Companion.showProgressDialog(this);
         HashMap<String, String> paramsHashMap = new HashMap<String, String>();
         paramsHashMap.put(Tags.language, new Prefs(this).getDefaultLanguage());
@@ -229,14 +242,17 @@ public class DeliveredOrderDetailActivity extends AppCompatActivity implements R
             paramsHashMap.put(Tags.order_id, notificationModel.item_id);
         else
             paramsHashMap.put(Tags.order_id, orderModel.order_id);
-        paramsHashMap.put(Tags.status, "3");
+//        paramsHashMap.put(Tags.order_id, orderModel.order_id);
+        paramsHashMap.put(Tags.status, status);
 
         double latitude = Double.parseDouble(new Prefs(this).getStringValue(Tags.LAT, ""));
         double longitude = Double.parseDouble(new Prefs(this).getStringValue(Tags.LNG, ""));
         String distance= AppDelegate.Companion.distance(AppDelegate.Companion.getStoreLat(), AppDelegate.Companion.getStoreLng(), latitude, longitude);
         paramsHashMap.put(Tags.distance_km, distance);
+//        paramsHashMap.put(Tags.distance_km, "0");
 //        paramsHashMap.put(Tags.device_id, new Prefs(getActivity()).getFcMtokeninTemp());
 //        paramsHashMap.put(Tags.device_type, "android");
+
         RequestModel requestModel = new RequestModel();
         requestModel.setWebServiceName(ApiConstant.delivery_boy_update_order_status);
         requestModel.setWebServiceTag(ApiConstant.delivery_boy_update_order_status);
@@ -244,6 +260,64 @@ public class DeliveredOrderDetailActivity extends AppCompatActivity implements R
         requestModel.setParamsHashmap(paramsHashMap);
         new ExecuteService().execute(this, true, this, requestModel);
     }
+
+    @Override
+    public void onNoNetwork(String message, String webServiceTag) {
+        AppDelegate.Companion.hideProgressDialog(this);
+        txt_norecordFound.setVisibility(View.VISIBLE);
+//      AppDelegate.Companion.showSnackBar(et_email, message);
+    }
+
+    OrderDetailModel orderDetailModel;
+
+    @Override
+    public void onSuccess(String message, String webServiceTag, String successMsg) {
+        AppDelegate.Companion.hideProgressDialog(this);
+        switch (webServiceTag) {
+            case ApiConstant.get_order_detail_for_delivery_boy:
+                orderDetailModel = new Gson().fromJson(message, OrderDetailModel.class);
+                setData(orderDetailModel);
+                setAdapter(orderDetailModel.Products);
+                scrollView.setVisibility(View.VISIBLE);
+                rl_norecordfound.setVisibility(View.GONE);
+                if (From == 1)
+                    callReadNotificationApi(pnModel.getNotification_id());
+                else if (From == 2) if (notificationModel.is_read.equals("0"))
+                    callReadNotificationApi(notificationModel.id);
+                break;
+            case ApiConstant.delivery_boy_update_order_status:
+                AppDelegate.Companion.showToast(this, successMsg);
+                if (From == 1) {
+                    startActivity(new Intent(this, HomeActivity.class));
+                } else if (From == 2) {
+                    if (notificationModel.is_read.equals("0")) {
+                    }
+                } else {
+                    Intent intent = new Intent();
+                    intent.putExtra(Tags.data, 1);
+                    setResult(Activity.RESULT_OK, intent);
+                }
+
+                if (orderDetailModel.Order.order_delivery_status.equalsIgnoreCase("Ready To Deliver")) {
+                    collectCashAlert(this, "", getString(R.string.collect_cash));
+
+                } else if (orderDetailModel.Order.order_delivery_status.equalsIgnoreCase("Pending")) {
+                    Intent intent2 = new Intent();
+                    intent2.setAction("UPDATE_ACCEPTED");
+                    sendBroadcast(intent2);
+                    finish();
+                }
+
+                break;
+            case ApiConstant.read_notification:
+                AppDelegate.Companion.LogT("Response==>" + message);
+                notificationModel.is_read = "1";
+                isCalled = true;
+                myadapter.notifyDataSetChanged();
+                break;
+        }
+    }
+
     void collectCashAlert(Context mContext, String Title, String Message) {
         try {
             AlertDialog.Builder mAlert = new AlertDialog.Builder(mContext);
@@ -251,58 +325,15 @@ public class DeliveredOrderDetailActivity extends AppCompatActivity implements R
             mAlert.setTitle(Title);
             mAlert.setMessage(Message);
             mAlert.setPositiveButton(getString(R.string.ok), (dialogInterface, i) -> {
-                Intent intent = new Intent();
-                intent.putExtra(Tags.data, 1);
-                setResult(Activity.RESULT_OK, intent);
                 dialogInterface.dismiss();
                 finish();
+                Intent intent2 = new Intent();
+                intent2.setAction("UPDATE_DELIVER");
+                sendBroadcast(intent2);
             });
             mAlert.show();
         } catch (Exception e) {
             AppDelegate.Companion.LogE(e);
-        }
-    }
-    @Override
-    public void onNoNetwork(String message, String webServiceTag) {
-        AppDelegate.Companion.hideProgressDialog(this);
-//        AppDelegate.Companion.showSnackBar(et_email, message);
-        txt_norecordFound.setVisibility(View.VISIBLE);
-    }
-    OrderDetailModel orderDetailModel;
-    @Override
-    public void onSuccess(String message, String webServiceTag, String successMsg) {
-        AppDelegate.Companion.hideProgressDialog(this);
-        switch (webServiceTag) {
-            case ApiConstant.get_order_detail_for_delivery_boy:
-                AppDelegate.Companion.LogT("Response ==>" + message);
-                 orderDetailModel = new Gson().fromJson(message, OrderDetailModel.class);
-
-                setData(orderDetailModel);
-                setAdapter(orderDetailModel.Products);
-                scrollView.setVisibility(View.VISIBLE);
-                rl_norecordfound.setVisibility(View.GONE);
-                if (From == 1) {
-                    startActivity(new Intent(this, HomeActivity.class));
-                } else if (From == 2) if (notificationModel.is_read.equals("0")) {
-                } else {
-                    Intent intent = new Intent();
-                    intent.putExtra(Tags.data, 1);
-                    setResult(Activity.RESULT_OK, intent);
-                }
-                finish();
-                break;
-            case ApiConstant.delivery_boy_update_order_status:
-                AppDelegate.Companion.showToast(this, successMsg);
-
-                collectCashAlert(this,"",getString(R.string.collect_cash));
-                break;
-            case ApiConstant.read_notification:
-                AppDelegate.Companion.LogT("Response==>" + message);
-                if (notificationModel != null) {
-                    notificationModel.is_read = "1";
-                    isCalled = true;
-                }
-                break;
         }
     }
 
@@ -318,30 +349,39 @@ public class DeliveredOrderDetailActivity extends AppCompatActivity implements R
             Date starttime = new SimpleDateFormat("hh:mm:ss").parse(orderDetailModel.Order.delivery_start_time);
             Date endtime = new SimpleDateFormat("hh:mm:ss").parse(orderDetailModel.Order.delivery_end_time);
             tv_delivery_time.setText(new SimpleDateFormat("h:mm a").format(starttime) + " to " + new SimpleDateFormat("h:mm a").format(endtime));
-
         } catch (Exception e) {
             AppDelegate.Companion.LogE(e);
         }
 
 //        tv_status.setText(orderDetailModel.Order.order_delivery_status);
+
         switch (orderDetailModel.Order.order_delivery_status) {
             case "Cancelled":
                 tv_status.setText(getString(R.string.Cancelled));
+                btn_accept_order.setVisibility(View.GONE);
                 break;
             case "Not Cancelled":
+                btn_accept_order.setVisibility(View.GONE);
                 tv_status.setText(getString(R.string.NotCancelled));
                 break;
             case "Pending":
                 tv_status.setText(getString(R.string.Pending));
+
+                btn_accept_order.setVisibility(View.VISIBLE);
+                btn_accept_order.setText(getString(R.string.pickup_from_vendor));
                 break;
             case "Under Packaging":
                 tv_status.setText(getString(R.string.UnderPackaging));
+                btn_accept_order.setVisibility(View.GONE);
                 break;
             case "Ready To Deliver":
+                btn_accept_order.setText(getString(R.string.delivered));
                 tv_status.setText(getString(R.string.ReadyToDeliver));
+                btn_accept_order.setVisibility(View.VISIBLE);
                 break;
             case "Delivered":
                 tv_status.setText(getString(R.string.delivered));
+                btn_accept_order.setVisibility(View.GONE);
                 break;
         }
         switch (orderDetailModel.Order.payment_mode) {
@@ -351,40 +391,29 @@ public class DeliveredOrderDetailActivity extends AppCompatActivity implements R
             case "Wallet":
                 tv_payment_mode.setText(getString(R.string.wallet));
                 break;
-            case "Online":
+            default:
                 tv_payment_mode.setText(getString(R.string.credit_card));
                 break;
-            default:
-                tv_payment_mode.setText(getString(R.string.thawani));
-                break;
         }
-        tv_order_amount.setText(orderDetailModel.Order.total_amount+" "+ getString(R.string.omr));
+
+        tv_order_amount.setText(orderDetailModel.Order.total_amount + " " + getString(R.string.omr));
         DecimalFormat df = new DecimalFormat(".##");
-//        if (orderModel != null && AppDelegate.Companion.isValidString(orderModel.distance))
-        tv_delivery_address_in_miles.setText(df.format(Double.parseDouble(orderDetailModel.Order.distance)) + " "+getString(R.string.miles));
+//      if (orderModel != null && AppDelegate.Companion.isValidString(orderModel.distance))
+        tv_delivery_address_in_miles.setText(df.format(Double.parseDouble(orderDetailModel.Order.distance)) + " " + getString(R.string.miles));
         tv_delivery_order_to_person.setText(orderDetailModel.Order.deliver_to);
         tv_delivery_order_address.setText(orderDetailModel.Order.delivery_address);
         btn_call_delivery_person.setText(orderDetailModel.Order.deliver_mobile);
-        imv_track_order.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               startActivity(new Intent(DeliveredOrderDetailActivity.this, TrackOrderActivity.class).putExtra(Tags.LAT, orderDetailModel.Order.delivery_latitude).putExtra(Tags.LNG, orderDetailModel.Order.delivery_longitude)
-                );
-            }
-        });
     }
 
     @Override
     public void onFailure(String message, String webServiceTag) {
         AppDelegate.Companion.hideProgressDialog(this);
-//        AppDelegate.Companion.showSnackBar(et_email, message);
         txt_norecordFound.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onFailureRetro(RestError message, String webServiceTag) {
         AppDelegate.Companion.hideProgressDialog(this);
-//        AppDelegate.Companion.showSnackBar(et_email, message.getstrMessage());
         txt_norecordFound.setVisibility(View.VISIBLE);
     }
 }

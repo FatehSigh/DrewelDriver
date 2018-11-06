@@ -33,7 +33,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <ScrollView
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -51,7 +51,7 @@
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/order_id"
-                    style="@style/Text12GreyStyleView"
+                    style="@style/Text14GreyStyleView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -60,7 +60,7 @@
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/tv_order_place_on_date"
-                    style="@style/Text12OrangeStyleView"
+                    style="@style/Text14OrangeStyleView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -70,7 +70,7 @@
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/placed_on"
-                    style="@style/Text12GreyStyleView"
+                    style="@style/Text14GreyStyleView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/order_id"
@@ -80,7 +80,7 @@
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/tv_total_items"
-                    style="@style/Text12OrangeStyleView"
+                    style="@style/Text14OrangeStyleView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_order_place_on_date"
@@ -100,7 +100,7 @@
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/status"
-                    style="@style/Text12GreyStyleView"
+                    style="@style/Text14GreyStyleView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/view_id"
@@ -111,7 +111,7 @@
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/tv_status"
-                    style="@style/Text12GreyStyleView"
+                    style="@style/Text14GreyStyleView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/view_id"
@@ -123,7 +123,7 @@
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/delivery_date"
-                    style="@style/Text10GreyStyleView"
+                    style="@style/Text12GreyStyleView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/status"
@@ -133,7 +133,7 @@
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/tv_delivery_date"
-                    style="@style/Text10GreyStyleView"
+                    style="@style/Text12GreyStyleView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_status"
@@ -156,7 +156,7 @@
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/delivery_time"
-                    style="@style/Text10GreyStyleView"
+                    style="@style/Text12GreyStyleView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/delivery_date"
@@ -167,12 +167,33 @@
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/tv_delivery_time"
-                    style="@style/Text10GreyStyleView"
+                    style="@style/Text12GreyStyleView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_delivery_date"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_toEndOf="@+id/delivery_date"
+                    android:text="Tue, 9 May'18"
+                    android:textColor="@color/black" />
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/payment_mode"
+                    style="@style/Text12GreyStyleView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/delivery_time"
+                    android:layout_alignParentStart="true"
+                    android:src="@android:drawable/ic_menu_camera"
+                    android:text="@string/payment_method_colon" />
+
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_payment_mode"
+                    style="@style/Text12GreyStyleView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_delivery_time"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_toEndOf="@+id/payment_mode"
                     android:text="Tue, 9 May'18"
                     android:textColor="@color/black" />
             </RelativeLayout>
@@ -216,7 +237,7 @@
 
                             <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/pick_up_address"
-                                style="@style/Text12GreyStyleView"
+                                style="@style/Text14GreyStyleView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
@@ -224,7 +245,7 @@
 
                             <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/tv_pickup_address_in_miles"
-                                style="@style/Text12OrangeStyleView"
+                                style="@style/Text14OrangeStyleView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/_10sdp"
@@ -233,7 +254,7 @@
 
                             <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/tv_pickup_order_to_person"
-                                style="@style/Text12OrangeStyleView"
+                                style="@style/Text14OrangeStyleView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/pick_up_address"
@@ -250,7 +271,7 @@
 
                             <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/tv_pickup_order_address"
-                                style="@style/Text10GreyStyleView"
+                                style="@style/Text12GreyStyleView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/tv_pickup_order_to_person"
@@ -261,7 +282,7 @@
 
                             <Button
                                 android:id="@+id/btn_call_pickup_person"
-                                style="@style/Text10GreyStyleView"
+                                style="@style/Text12GreyStyleView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_28sdp"
                                 android:layout_below="@+id/tv_pickup_order_address"
@@ -294,7 +315,7 @@
 
                             <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/delivery_address"
-                                style="@style/Text12GreyStyleView"
+                                style="@style/Text14GreyStyleView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
@@ -302,7 +323,7 @@
 
                             <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/tv_delivery_address_in_miles"
-                                style="@style/Text12OrangeStyleView"
+                                style="@style/Text14OrangeStyleView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/_10sdp"
@@ -311,7 +332,7 @@
 
                             <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/tv_delivery_order_to_person"
-                                style="@style/Text12OrangeStyleView"
+                                style="@style/Text14OrangeStyleView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/tv_delivery_address_in_miles"
@@ -328,7 +349,7 @@
 
                             <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/tv_delivery_order_address"
-                                style="@style/Text10GreyStyleView"
+                                style="@style/Text12GreyStyleView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/tv_delivery_order_to_person"
@@ -339,7 +360,7 @@
 
                             <Button
                                 android:id="@+id/btn_call_delivery_person"
-                                style="@style/Text10GreyStyleView"
+                                style="@style/Text12GreyStyleView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_28sdp"
                                 android:layout_below="@+id/tv_delivery_order_address"
@@ -367,7 +388,7 @@
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/order_items"
-                style="@style/Text12GreyStyleView"
+                style="@style/Text14GreyStyleView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ll_address"
@@ -382,7 +403,7 @@
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tv_order_items"
-                style="@style/Text12OrangeStyleView"
+                style="@style/Text14OrangeStyleView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ll_address"
@@ -422,7 +443,7 @@
                 android:text="@string/delivered"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_10sdp" />
+                android:textSize="@dimen/_13sdp" />
         </RelativeLayout>
     </ScrollView>
     <RelativeLayout

@@ -60,7 +60,8 @@ public class AcceptedOrderFragmentAdapter extends RecyclerView.Adapter<AcceptedO
         public TextView btn_accept_order;
         @BindView(R.id.tv_delivery_time)
         AppCompatTextView tv_delivery_time;
-
+        @BindView(R.id.tv_payment_mode)
+        AppCompatTextView tv_payment_mode;
         ViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
@@ -118,6 +119,20 @@ public class AcceptedOrderFragmentAdapter extends RecyclerView.Adapter<AcceptedO
                 holder.tv_status.setText(context.getString(R.string.delivered));
                 break;
         }
+        switch (orderModel.payment_mode) {
+            case "COD":
+                holder. tv_payment_mode.setText(context.getString(R.string.COD));
+                break;
+            case "Wallet":
+                holder. tv_payment_mode.setText(context.getString(R.string.wallet));
+                break;
+            case "Online":
+                holder.tv_payment_mode .setText(context.getString(R.string.credit_card));
+                break;
+            default:
+                holder. tv_payment_mode.setText(context.getString(R.string.thawani));
+                break;
+        }
 //        holder.tv_status.setText(orderModel.order_delivery_status);
         holder.tv_order_amount.setText(orderModel.total_amount+" "+context.getString(R.string.omr));
         DecimalFormat df = new DecimalFormat(".##");
@@ -133,12 +148,12 @@ public class AcceptedOrderFragmentAdapter extends RecyclerView.Adapter<AcceptedO
             }
         });
 
-        holder.btn_order_details.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AppDelegate.Companion.call(context, orderModel.deliver_mobile);
-            }
-        });
+//        holder.btn_order_details.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                AppDelegate.Companion.call(context, orderModel.deliver_mobile);
+//            }
+//        });
         holder.btn_accept_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

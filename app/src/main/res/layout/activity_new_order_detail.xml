@@ -7,6 +7,7 @@
     android:background="@color/white"
     android:descendantFocusability="blocksDescendants"
     android:orientation="vertical">
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
@@ -33,83 +34,83 @@
 
     <ScrollView
         android:layout_width="match_parent"
-
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="visible">
 
         <RelativeLayout
             android:id="@+id/rel"
-            android:padding="@dimen/_16sdp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_16sdp">
 
             <RelativeLayout
                 android:id="@+id/rel_new"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/order_id"
+                    style="@style/Text14GreyStyleView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:src="@android:drawable/ic_menu_camera"
-                    android:text="@string/placed_on"
-                    style="@style/Text12GreyStyleView" />
+                    android:text="@string/placed_on" />
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/tv_order_place_on_date"
+                    style="@style/Text14OrangeStyleView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="@dimen/_15sdp"
                     android:layout_marginStart="@dimen/_5sdp"
-                    android:text="7th May 18 at 4:40pm"
-                    style="@style/Text12OrangeStyleView" />
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:text="7th May 18 at 4:40pm" />
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/placed_on"
+                    style="@style/Text14GreyStyleView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
                     android:layout_below="@+id/order_id"
+                    android:layout_alignParentStart="true"
                     android:src="@android:drawable/ic_menu_camera"
-                    android:text="@string/items"
-                    style="@style/Text12GreyStyleView" />
+                    android:text="@string/items" />
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/tv_total_items"
+                    style="@style/Text14OrangeStyleView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignStart="@+id/tv_order_place_on_date"
                     android:layout_below="@+id/tv_order_place_on_date"
+                    android:layout_alignStart="@+id/tv_order_place_on_date"
+                    android:layout_alignParentEnd="true"
                     android:layout_marginEnd="@dimen/_15sdp"
-                    android:text="7"
-                    style="@style/Text12OrangeStyleView" />
+                    android:text="7" />
 
                 <View
                     android:id="@+id/view_id"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1sdp"
                     android:layout_below="@+id/tv_total_items"
-                    android:layout_marginBottom="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
                     android:background="@color/violet" />
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/status"
+                    style="@style/Text14GreyStyleView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
                     android:layout_below="@+id/view_id"
+                    android:layout_alignParentStart="true"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:src="@android:drawable/ic_menu_camera"
-                    android:text="@string/status"
-                    style="@style/Text12GreyStyleView" />
+                    android:text="@string/status" />
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/tv_status"
+                    style="@style/Text14GreyStyleView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/view_id"
@@ -117,59 +118,81 @@
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_toEndOf="@+id/status"
                     android:text="@string/new_order"
-                    android:textColor="@color/green"
-                    style="@style/Text12GreyStyleView" />
+                    android:textColor="@color/green" />
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/delivery_date"
+                    style="@style/Text12GreyStyleView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
                     android:layout_below="@+id/status"
+                    android:layout_alignParentStart="true"
                     android:src="@android:drawable/ic_menu_camera"
-                    android:text="@string/delivery_date"
-                    style="@style/Text10GreyStyleView" />
+                    android:text="@string/delivery_date" />
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/tv_delivery_date"
+                    style="@style/Text12GreyStyleView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_status"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_toEndOf="@+id/delivery_date"
                     android:text="Tue, 9 May'18"
-                    android:textColor="@color/black"
-                    style="@style/Text10GreyStyleView" />
+                    android:textColor="@color/black" />
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/tv_order_amount"
+                    style="@style/Text14OrangeStyleView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
                     android:layout_below="@+id/tv_status"
+                    android:layout_alignParentEnd="true"
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:text="$950"
-                   style="@style/Text14OrangeStyleView"
                     android:textStyle="bold" />
+
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/delivery_time"
-                    style="@style/Text10GreyStyleView"
+                    style="@style/Text12GreyStyleView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
                     android:layout_below="@+id/delivery_date"
+                    android:layout_alignParentStart="true"
                     android:src="@android:drawable/ic_menu_camera"
                     android:text="@string/delivery_time" />
 
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/tv_delivery_time"
-                    style="@style/Text10GreyStyleView"
+                    style="@style/Text12GreyStyleView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_delivery_date"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_toEndOf="@+id/delivery_date"
+                    android:text="Tue, 9 May'18"
+                    android:textColor="@color/black" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/payment_mode"
+                    style="@style/Text12GreyStyleView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/delivery_time"
+                    android:layout_alignParentStart="true"
+                    android:src="@android:drawable/ic_menu_camera"
+                    android:text="@string/payment_method_colon" />
+
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_payment_mode"
+                    style="@style/Text12GreyStyleView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_delivery_time"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_toEndOf="@+id/payment_mode"
                     android:text="Tue, 9 May'18"
                     android:textColor="@color/black" />
             </RelativeLayout>
@@ -183,11 +206,11 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:src="@mipmap/line" />
+                    android:src="@mipmap/line"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -195,14 +218,14 @@
                     android:orientation="vertical">
 
                     <android.support.v7.widget.CardView
-                        android:visibility="gone"
                         android:id="@+id/card_view_pickup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
                         android:layout_gravity="center"
+
                         android:layout_marginTop="@dimen/_5sdp"
                         android:elevation="@dimen/_3sdp"
+                        android:visibility="gone"
                         card_view:cardCornerRadius="@dimen/_6sdp">
 
                         <RelativeLayout
@@ -213,7 +236,7 @@
 
                             <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/pick_up_address"
-                                style="@style/Text12GreyStyleView"
+                                style="@style/Text14GreyStyleView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
@@ -221,7 +244,7 @@
 
                             <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/tv_pickup_address_in_miles"
-                                style="@style/Text12OrangeStyleView"
+                                style="@style/Text14OrangeStyleView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/_10sdp"
@@ -230,7 +253,7 @@
 
                             <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/tv_pickup_order_to_person"
-                                style="@style/Text12OrangeStyleView"
+                                style="@style/Text14OrangeStyleView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/pick_up_address"
@@ -247,7 +270,7 @@
 
                             <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/tv_pickup_order_address"
-                                style="@style/Text10GreyStyleView"
+                                style="@style/Text12GreyStyleView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/tv_pickup_order_to_person"
@@ -258,7 +281,7 @@
 
                             <Button
                                 android:id="@+id/btn_call_pickup_person"
-                                style="@style/Text10GreyStyleView"
+                                style="@style/Text12GreyStyleView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_28sdp"
                                 android:layout_below="@+id/tv_pickup_order_address"
@@ -291,7 +314,7 @@
 
                             <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/delivery_address"
-                                style="@style/Text12GreyStyleView"
+                                style="@style/Text14GreyStyleView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
@@ -299,7 +322,7 @@
 
                             <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/tv_delivery_address_in_miles"
-                                style="@style/Text12OrangeStyleView"
+                                style="@style/Text14OrangeStyleView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/_10sdp"
@@ -308,7 +331,7 @@
 
                             <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/tv_delivery_order_to_person"
-                                style="@style/Text12OrangeStyleView"
+                                style="@style/Text14OrangeStyleView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/tv_delivery_address_in_miles"
@@ -325,7 +348,7 @@
 
                             <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/tv_delivery_order_address"
-                                style="@style/Text10GreyStyleView"
+                                style="@style/Text12GreyStyleView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/tv_delivery_order_to_person"
@@ -336,7 +359,7 @@
 
                             <Button
                                 android:id="@+id/btn_call_delivery_person"
-                                style="@style/Text10GreyStyleView"
+                                style="@style/Text12GreyStyleView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_28sdp"
                                 android:layout_below="@+id/tv_delivery_order_address"
@@ -355,31 +378,31 @@
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/order_items"
+                style="@style/Text14GreyStyleView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_below="@+id/ll_address"
-                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_alignParentStart="true"
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
                 android:src="@android:drawable/ic_menu_camera"
                 android:text="@string/order_items"
                 android:textColor="@color/dark_gray"
-                style="@style/Text12GreyStyleView"
 
                 android:textStyle="bold" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tv_order_items"
+                style="@style/Text14OrangeStyleView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ll_address"
-                android:layout_marginBottom="@dimen/_5sdp"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
                 android:layout_toEndOf="@+id/order_items"
-                android:text="7"
-                style="@style/Text12OrangeStyleView" />
+                android:text="7" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -395,8 +418,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_1sdp"
                 android:layout_below="@+id/recyclerView"
-                android:layout_marginBottom="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
                 android:background="@color/violet" />
 
             <LinearLayout
@@ -411,30 +434,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_28sdp"
                     android:layout_below="@+id/tv_order_delivery_address"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
                     android:background="@drawable/accept_bg"
+                    android:textSize="@dimen/_13sdp"
                     android:gravity="center"
-
                     android:text="@string/accept_order"
-                    android:textColor="@color/white"
-                    style="@style/Text10GreyStyleView" />
+                    android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/btn_decline_order"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_28sdp"
                     android:layout_below="@+id/tv_order_delivery_address"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
                     android:background="@drawable/decline_bg"
                     android:gravity="center"
                     android:text="@string/decline_order"
-                    android:textColor="@color/colorPrimary"
-                    style="@style/Text10GreyStyleView" />
+                    android:textSize="@dimen/_13sdp"
+                    android:textColor="@color/colorPrimary" />
             </LinearLayout>
         </RelativeLayout>
 

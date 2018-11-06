@@ -18,6 +18,6 @@
         android:title="@string/earning" />-->
     <item
         android:id="@+id/navigation_more"
-        android:icon="@drawable/more_selector"
+        android:icon="@mipmap/moreunselect"
         android:title="@string/more" />
 </menu>

@@ -89,7 +89,8 @@ public class AcceptedOrderDetailActivity extends AppCompatActivity implements Re
     @BindView(R.id.txt_norecordFound)
     AppCompatTextView txt_norecordFound;
     boolean isCalled = false;
-
+    @BindView(R.id.tv_payment_mode)
+    AppCompatTextView tv_payment_mode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,7 +134,7 @@ public class AcceptedOrderDetailActivity extends AppCompatActivity implements Re
                 callChangeOrderStatusrApi();
                 break;
             case R.id.btn_call_delivery_person:
-                AppDelegate.Companion.call(this, orderModel.deliver_mobile);
+                AppDelegate.Companion.call(this, orderDetailModel.Order.deliver_mobile);
                 break;
         }
     }
@@ -173,7 +174,7 @@ public class AcceptedOrderDetailActivity extends AppCompatActivity implements Re
     private void setAdapter(List<ProductModel> products) {
         LinearLayoutManager llm = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(llm);
-        myadapter = new SimilarOrderItemAdapter(products,this);
+        myadapter = new SimilarOrderItemAdapter(products, this);
         recyclerView.setAdapter(myadapter);
     }
 
@@ -220,6 +221,7 @@ public class AcceptedOrderDetailActivity extends AppCompatActivity implements Re
             paramsHashMap.put(Tags.order_id, orderModel.order_id);
 //        paramsHashMap.put(Tags.order_id, orderModel.order_id);
         paramsHashMap.put(Tags.status, "2");
+        paramsHashMap.put(Tags.distance_km, "0");
 //        paramsHashMap.put(Tags.device_id, new Prefs(getActivity()).getFcMtokeninTemp());
 //        paramsHashMap.put(Tags.device_type, "android");
 
@@ -238,12 +240,14 @@ public class AcceptedOrderDetailActivity extends AppCompatActivity implements Re
 //      AppDelegate.Companion.showSnackBar(et_email, message);
     }
 
+    OrderDetailModel orderDetailModel;
+
     @Override
     public void onSuccess(String message, String webServiceTag, String successMsg) {
         AppDelegate.Companion.hideProgressDialog(this);
         switch (webServiceTag) {
             case ApiConstant.get_order_detail_for_delivery_boy:
-                OrderDetailModel orderDetailModel = new Gson().fromJson(message, OrderDetailModel.class);
+                orderDetailModel = new Gson().fromJson(message, OrderDetailModel.class);
                 setData(orderDetailModel);
                 setAdapter(orderDetailModel.Products);
                 scrollView.setVisibility(View.VISIBLE);
@@ -257,19 +261,22 @@ public class AcceptedOrderDetailActivity extends AppCompatActivity implements Re
                 AppDelegate.Companion.showToast(this, successMsg);
                 if (From == 1) {
                     startActivity(new Intent(this, HomeActivity.class));
-                } else if (From == 2) if (notificationModel.is_read.equals("0")) {
+                } else if (From == 2) {
+                    if (notificationModel.is_read.equals("0")) {
+                    }
                 } else {
                     Intent intent = new Intent();
                     intent.putExtra(Tags.data, 1);
                     setResult(Activity.RESULT_OK, intent);
                 }
-                Intent intent2 = new Intent();
-                intent2.setAction("UPDATE_DELIVER");
-                sendBroadcast(intent2);
-                Intent intent3 = new Intent();
-                intent3.setAction("UPDATE_ACCEPTED");
-                sendBroadcast(intent3);
                 finish();
+//                Intent intent2 = new Intent();
+//                intent2.setAction("UPDATE_DELIVER");
+//                sendBroadcast(intent2);
+//                Intent intent3 = new Intent();
+//                intent3.setAction("UPDATE_ACCEPTED");
+//                sendBroadcast(intent3);
+//                finish();
                 break;
             case ApiConstant.read_notification:
                 AppDelegate.Companion.LogT("Response==>" + message);
@@ -318,11 +325,26 @@ public class AcceptedOrderDetailActivity extends AppCompatActivity implements Re
                 tv_status.setText(getString(R.string.delivered));
                 break;
         }
+        switch (orderDetailModel.Order.payment_mode) {
+            case "COD":
+                tv_payment_mode.setText(getString(R.string.COD));
+                break;
+            case "Wallet":
+                tv_payment_mode.setText(getString(R.string.wallet));
+                break;
+
+            case "Online":
+                tv_payment_mode.setText(getString(R.string.credit_card));
+                break;
+            default:
+                tv_payment_mode.setText(getString(R.string.thawani));
+                break;
+        }
 
         tv_order_amount.setText(orderDetailModel.Order.total_amount + " " + getString(R.string.omr));
         DecimalFormat df = new DecimalFormat(".##");
 //      if (orderModel != null && AppDelegate.Companion.isValidString(orderModel.distance))
-        tv_delivery_address_in_miles.setText(df.format(Double.parseDouble(orderDetailModel.Order.distance)) +" "+getString(R.string.miles));
+        tv_delivery_address_in_miles.setText(df.format(Double.parseDouble(orderDetailModel.Order.distance)) + " " + getString(R.string.miles));
         tv_delivery_order_to_person.setText(orderDetailModel.Order.deliver_to);
         tv_delivery_order_address.setText(orderDetailModel.Order.delivery_address);
         btn_call_delivery_person.setText(orderDetailModel.Order.deliver_mobile);

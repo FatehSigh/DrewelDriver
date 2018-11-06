@@ -114,7 +114,12 @@ class TrackOrderActivity : AppCompatActivity(), OnMapReadyCallback, AsyncGetDire
 
     /* set marker for destination and driver current location*/
     private fun setMarkers() {
-        driverCurrentLocationLatLng = LatLng(destinationLatitude.toDouble(), destinationLongitude.toDouble())
+        var latitude = Prefs(this@TrackOrderActivity).getStringValue(Tags.LAT, "")
+        var longitude = Prefs(this@TrackOrderActivity).getStringValue(Tags.LNG, "")
+//
+        driverCurrentLocationLatLng = LatLng(latitude.toDouble(), longitude.toDouble())
+//        driverCurrentMarker.position = driverCurrentLocationLatLng
+//        driverCurrentLocationLatLng = LatLng(destinationLatitude.toDouble(), destinationLongitude.toDouble())
         driverCurrentMarker = googleMap.addMarker(MarkerOptions().position(driverCurrentLocationLatLng).anchor(0.5f, 0.5f))
 
         val cameraUpdate = CameraUpdateFactory.newLatLngZoom(driverCurrentLocationLatLng, 14f)
@@ -142,7 +147,7 @@ class TrackOrderActivity : AppCompatActivity(), OnMapReadyCallback, AsyncGetDire
                             driverCurrentLocationLatLng = LatLng(latitude.toDouble(), longitude.toDouble())
                             driverCurrentMarker.position = driverCurrentLocationLatLng
                             GetdirectionAsync(this, this,
-                                    driverCurrentLocationLatLng.latitude, driverCurrentLocationLatLng.longitude,deliveryLocationLatLng.latitude, deliveryLocationLatLng.longitude, "drive").execute()
+                                    driverCurrentLocationLatLng.latitude, driverCurrentLocationLatLng.longitude, deliveryLocationLatLng.latitude, deliveryLocationLatLng.longitude, "drive").execute()
 
 //                            callGetDirectionApi()
                         },
@@ -175,7 +180,7 @@ class TrackOrderActivity : AppCompatActivity(), OnMapReadyCallback, AsyncGetDire
         getDirectionObservable.subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ directionResults ->
-                    AppDelegate.LogT("Route==>"+directionResults)
+                    AppDelegate.LogT("Route==>" + directionResults)
                     val routeList = AppDelegate.getStepsToDrawPolyline(directionResults)
                     if (routeList.size > 0) {
                         val rectLine = PolylineOptions().width(10f).color(Color.RED)

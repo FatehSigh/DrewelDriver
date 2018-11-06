@@ -39,7 +39,7 @@
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/placed_on"
-                style="@style/Text10GreyStyleView"
+                style="@style/Text12GreyStyleView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -50,7 +50,7 @@
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tv_placed_on_date"
-                style="@style/Text10GreyStyleView"
+                style="@style/Text12GreyStyleView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_order_id_number"
@@ -61,7 +61,7 @@
 
             <TextView
                 android:id="@+id/btn_order_details"
-                style="@style/Text10OrangeStyleView"
+                style="@style/Text12OrangeStyleView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -163,6 +163,27 @@
                 android:layout_toEndOf="@+id/delivery_date"
                 android:text="Tue, 9 May'18"
                 android:textColor="@color/black" />
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/payment_mode"
+                style="@style/Text12GreyStyleView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/delivery_time"
+                android:layout_alignParentStart="true"
+                android:src="@android:drawable/ic_menu_camera"
+                android:text="@string/payment_method_colon" />
+
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_payment_mode"
+                style="@style/Text12GreyStyleView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_delivery_time"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_toEndOf="@+id/payment_mode"
+                android:text="Tue, 9 May'18"
+                android:textColor="@color/black" />
         </RelativeLayout>
 
         <LinearLayout
@@ -239,7 +260,7 @@
 
                         <android.support.v7.widget.AppCompatTextView
                             android:id="@+id/tv_pickup_order_address"
-                            style="@style/Text10GreyStyleView"
+                            style="@style/Text12GreyStyleView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/tv_pickup_order_to_person"
@@ -250,7 +271,7 @@
 
                         <Button
                             android:id="@+id/btn_call_pickup_person"
-                            style="@style/Text10GreyStyleView"
+                            style="@style/Text12GreyStyleView"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/_28sdp"
                             android:layout_below="@+id/tv_pickup_order_address"
@@ -317,7 +338,7 @@
 
                         <android.support.v7.widget.AppCompatTextView
                             android:id="@+id/tv_delivery_order_address"
-                            style="@style/Text10GreyStyleView"
+                            style="@style/Text12GreyStyleView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/tv_delivery_order_to_person"
@@ -328,7 +349,7 @@
 
                         <Button
                             android:id="@+id/btn_call_delivery_person"
-                            style="@style/Text10GreyStyleView"
+                            style="@style/Text12GreyStyleView"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/_28sdp"
                             android:layout_below="@+id/tv_delivery_order_address"
@@ -356,7 +377,6 @@
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_accept_order"
-            style="@style/Text10GreyStyleView"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_28sdp"
             android:layout_below="@+id/view"

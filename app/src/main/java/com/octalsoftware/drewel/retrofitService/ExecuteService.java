@@ -36,7 +36,7 @@ public class ExecuteService {
 
         if (AppDelegate.Companion.haveNetworkConnection(context, false)) {
             try {
-                executeRequestusingRx(requestModel, responseInterface);
+                executeRequestusingRx(requestModel, responseInterface,context);
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -48,7 +48,7 @@ public class ExecuteService {
         }
     }
 
-    public void executeRequestusingRx(RequestModel requestModel, ResponseInterface responseInterface) throws UnsupportedEncodingException, JSONException {
+    public void executeRequestusingRx(RequestModel requestModel, ResponseInterface responseInterface, Context context) throws UnsupportedEncodingException, JSONException {
         APIInterface userService;
         Log.e("requestModel==", requestModel + "");
         userService = RestClient.createService(APIInterface.class);
@@ -56,36 +56,35 @@ public class ExecuteService {
             if (AppDelegate.Companion.isValidString(requestModel.getWebServiceName2())) {
                 if (requestModel.getParamsHashmap() == null)
                     userService.dataRequestGetRxWithoutParam(requestModel.getWebServiceName(), requestModel.getWebServiceName2()).retry(3).subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread()).subscribe(new RetroCallbackUsingRx(responseInterface, requestModel.getWebServiceTag()));
+                            .observeOn(AndroidSchedulers.mainThread()).subscribe(new RetroCallbackUsingRx(responseInterface, requestModel.getWebServiceTag(),context));
                 else
                     userService.dataRequestGetRx(requestModel.getWebServiceName(), requestModel.getWebServiceName2(), getMultiPartDataText(requestModel)).retry(3).subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread()).subscribe(new RetroCallbackUsingRx(responseInterface, requestModel.getWebServiceTag()));
+                            .observeOn(AndroidSchedulers.mainThread()).subscribe(new RetroCallbackUsingRx(responseInterface, requestModel.getWebServiceTag(),context));
             } else {
                 if (requestModel.getParamsHashmap() == null)
                     userService.dataRequestGetRxWithoutParam(requestModel.getWebServiceName()).retry(3).subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread()).subscribe(new RetroCallbackUsingRx(responseInterface, requestModel.getWebServiceTag()));
+                            .observeOn(AndroidSchedulers.mainThread()).subscribe(new RetroCallbackUsingRx(responseInterface, requestModel.getWebServiceTag(),context));
 
                 else
                     userService.dataRequestGetRx(requestModel.getWebServiceName(), getMultiPartDataText(requestModel)).retry(3).subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread()).subscribe(new RetroCallbackUsingRx(responseInterface, requestModel.getWebServiceTag()));
+                            .observeOn(AndroidSchedulers.mainThread()).subscribe(new RetroCallbackUsingRx(responseInterface, requestModel.getWebServiceTag(),context));
             }
         } else if (requestModel.getQueryFiles() == null) {
             if (AppDelegate.Companion.isValidString(requestModel.getWebServiceName2())) {
                 userService.dataRequestRx(requestModel.getWebServiceName(), requestModel.getWebServiceName2(), getMultiPartDataText(requestModel)).retry(3).subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread()).subscribe(new RetroCallbackUsingRx(responseInterface, requestModel.getWebServiceTag()));
+                        .observeOn(AndroidSchedulers.mainThread()).subscribe(new RetroCallbackUsingRx(responseInterface, requestModel.getWebServiceTag(),context));
             } else
                 userService.dataRequestRx(requestModel.getWebServiceName(), getMultiPartDataText(requestModel)).retry(3).subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread()).subscribe(new RetroCallbackUsingRx(responseInterface, requestModel.getWebServiceTag()));
+                        .observeOn(AndroidSchedulers.mainThread()).subscribe(new RetroCallbackUsingRx(responseInterface, requestModel.getWebServiceTag(),context));
 
         } else if (AppDelegate.Companion.isValidString(requestModel.getWebServiceName2()))
             userService.dataRequestMultiPartRx(requestModel.getWebServiceName(), requestModel.getWebServiceName2(), getMultiPartDataText(requestModel), getMultiPartDataImage(requestModel)).retry(3).subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread()).subscribe(new RetroCallbackUsingRx(responseInterface, requestModel.getWebServiceTag()));
+                    .observeOn(AndroidSchedulers.mainThread()).subscribe(new RetroCallbackUsingRx(responseInterface, requestModel.getWebServiceTag(),context));
         else {
             userService.dataRequestMultiPartRx(requestModel.getWebServiceName(), getMultiPartDataText(requestModel), getMultiPartDataImage(requestModel)).retry(3).subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread()).subscribe(new RetroCallbackUsingRx(responseInterface, requestModel.getWebServiceTag()));
+                    .observeOn(AndroidSchedulers.mainThread()).subscribe(new RetroCallbackUsingRx(responseInterface, requestModel.getWebServiceTag(),context));
         }
     }
-
 
     public RequestBody getMultiPartDataText(RequestModel requestModel) {
         HashMap<String, Object> bodyHashMap = new HashMap<>();

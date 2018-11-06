@@ -31,6 +31,7 @@ import com.octalsoftware.drewel.retrofitService.ExecuteService;
 import com.octalsoftware.drewel.retrofitService.RequestModel;
 import com.octalsoftware.drewel.retrofitService.ResponseInterface;
 import com.octalsoftware.drewel.retrofitService.RestError;
+import com.octalsoftware.drewel.utils.NotificationRxJavaBus;
 import com.octalsoftware.drewel.utils.Prefs;
 
 import org.jetbrains.annotations.NotNull;
@@ -69,6 +70,11 @@ public class AcceptedOrdersFragment extends Fragment implements View.OnClickList
     }
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         IntentFilter intentFilter = new IntentFilter();
@@ -92,11 +98,11 @@ public class AcceptedOrdersFragment extends Fragment implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
+//        switch (view.getId()) {
 //            case R.id.btn_order_details:
 //                startActivity(new Intent(getActivity(), AcceptedOrderDetailActivity.class));
 //                break;
-        }
+//        }
     }
 
     private void callNewOrderApi() {
@@ -125,7 +131,7 @@ public class AcceptedOrdersFragment extends Fragment implements View.OnClickList
         paramsHashMap.put(Tags.status, "2");
 //        paramsHashMap.put(Tags.device_id, new Prefs(getActivity()).getFcMtokeninTemp());
 //        paramsHashMap.put(Tags.device_type, "android");
-
+        paramsHashMap.put(Tags.distance_km, "0");
         RequestModel requestModel = new RequestModel();
         requestModel.setWebServiceName(ApiConstant.delivery_boy_update_order_status);
         requestModel.setWebServiceTag(ApiConstant.delivery_boy_update_order_status);
@@ -167,6 +173,7 @@ public class AcceptedOrdersFragment extends Fragment implements View.OnClickList
                 Intent intent2 = new Intent();
                 intent2.setAction("UPDATE_DELIVER");
                 getActivity().sendBroadcast(intent2);
+//                NotificationRxJavaBus.Companion.getInstance().getNotificationPublishSubject().onNext("UPDATE_DELIVER");
                 break;
         }
     }
@@ -215,18 +222,18 @@ public class AcceptedOrdersFragment extends Fragment implements View.OnClickList
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-//   Toast.makeText(context, "This is the broadcast", Toast.LENGTH_SHORT).show();
-            callNewOrderApiBroadcast();
+            if (isAdded())
+                callNewOrderApiBroadcast();
         }
     };
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        getActivity().unregisterReceiver(broadcastReceiver);
+//        getActivity().unregisterReceiver(broadcastReceiver);
     }
 
-    private void callNewOrderApiBroadcast() {
+    public void callNewOrderApiBroadcast() {
         HashMap<String, String> paramsHashMap = new HashMap<String, String>();
         paramsHashMap.put(Tags.language, new Prefs(getActivity()).getDefaultLanguage());
         paramsHashMap.put(Tags.user_id, Objects.requireNonNull(new Prefs(getActivity()).getUserdata()).user_id);

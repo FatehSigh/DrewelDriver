@@ -272,14 +272,14 @@ else
             if (tag.equalsIgnoreCase(Tags.details)) {
                 if (notificationList.get(position).type.equalsIgnoreCase(MyFirebaseMessagingService.NotificationType.deliveryBoyAssigned)) {
                     this.position = position;
-                    Intent intent = new Intent(this, AcceptedOrderDetailActivity.class);
+                    Intent intent = new Intent(this, OrderDetailActivity.class);
                     intent.putExtra(Tags.FROM, 2);
                     intent.putExtra(Tags.DATA, notificationList.get(position));
                     if (AppDelegate.Companion.isValidString(notificationList.get(position).item_id))
                         startActivityForResult(intent, UPDATE_REQUESTCODE);
                 } else if (notificationList.get(position).type.equalsIgnoreCase(MyFirebaseMessagingService.NotificationType.deliveryStatusChange)) {
                     this.position = position;
-                    Intent intent = new Intent(this, DeliveredOrderDetailActivity.class);
+                    Intent intent = new Intent(this, OrderDetailActivity.class);
                     intent.putExtra(Tags.FROM, 2);
                     intent.putExtra(Tags.DATA, notificationList.get(position));
                     if (AppDelegate.Companion.isValidString(notificationList.get(position).item_id))

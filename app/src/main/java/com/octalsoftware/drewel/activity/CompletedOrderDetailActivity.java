@@ -73,7 +73,8 @@ public class CompletedOrderDetailActivity extends AppCompatActivity implements R
     public TextView tv_order_items;
     @BindView(R.id.txt_toolbar)
     public TextView txt_toolbar;
-
+    @BindView(R.id.tv_payment_mode)
+    AppCompatTextView tv_payment_mode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -147,14 +148,14 @@ public class CompletedOrderDetailActivity extends AppCompatActivity implements R
         AppDelegate.Companion.hideProgressDialog(this);
 //        AppDelegate.Companion.showSnackBar(et_email, message);
     }
-
+    OrderDetailModel orderDetailModel;
     @Override
     public void onSuccess(String message, String webServiceTag, String successMsg) {
         switch (webServiceTag) {
             case ApiConstant.get_order_detail_for_delivery_boy:
                 AppDelegate.Companion.hideProgressDialog(this);
                 AppDelegate.Companion.LogT("Response ==>" + message);
-                OrderDetailModel orderDetailModel = new Gson().fromJson(message, OrderDetailModel.class);
+                 orderDetailModel = new Gson().fromJson(message, OrderDetailModel.class);
                 setData(orderDetailModel);
                 setAdapter(orderDetailModel.Products);
                 break;
@@ -165,7 +166,7 @@ public class CompletedOrderDetailActivity extends AppCompatActivity implements R
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_call_delivery_person:
-                AppDelegate.Companion.call(this, orderModel.deliver_mobile);
+                AppDelegate.Companion.call(this, orderDetailModel.Order.deliver_mobile);
                 break;
         }
     }
@@ -207,7 +208,20 @@ public class CompletedOrderDetailActivity extends AppCompatActivity implements R
                 tv_status.setText(getString(R.string.delivered));
                 break;
         }
-
+        switch (orderDetailModel.Order.payment_mode) {
+            case "COD":
+                tv_payment_mode.setText(getString(R.string.COD));
+                break;
+            case "Wallet":
+                tv_payment_mode.setText(getString(R.string.wallet));
+                break;
+            case "Online":
+                tv_payment_mode.setText(getString(R.string.credit_card));
+                break;
+            default:
+                tv_payment_mode.setText(getString(R.string.thawani));
+                break;
+        }
         tv_order_amount.setText(orderDetailModel.Order.total_amount+" "+ getString(R.string.omr));
         DecimalFormat df = new DecimalFormat(".##");
 //        if (AppDelegate.Companion.isValidString(orderModel.distance))

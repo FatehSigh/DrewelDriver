@@ -72,9 +72,9 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
                     holder.ll_main.setBackgroundColor(context.getResources().getColor(R.color.white));
             else
                 holder.ll_main.setBackgroundColor(context.getResources().getColor(R.color.white));
-//            if (new Prefs(context).getDefaultLanguage().equals(Tags.LANGUAGE_ARABIC))
-//                holder.tv_title.setText(notificationsModel.message_arabic);
-//            else
+            if (new Prefs(context).getDefaultLanguage().equals(Tags.LANGUAGE_ARABIC))
+                holder.tv_title.setText(notificationsModel.message_arabic);
+            else
                 holder.tv_title.setText(notificationsModel.message);
 
             try {

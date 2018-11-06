@@ -21,7 +21,16 @@
             app:contentInsetStart="0dp"
             android:paddingEnd="@dimen/_10sdp"
             app:popupTheme="@style/AppTheme.AppBarOverlay">
-
+            <ImageView
+                android:visibility="visible"
+                android:padding="@dimen/_15sdp"
+                android:layout_gravity="start"
+                android:id="@+id/img_location"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:spinnerMode="dropdown"
+                android:src="@mipmap/mapview"
+                android:text="@string/orders" />
             <TextView
                 android:id="@+id/txt_toolbar"
                 style="@style/ToolbarTitleStyle"

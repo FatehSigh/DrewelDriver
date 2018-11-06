@@ -22,6 +22,7 @@ import com.octalsoftware.drewel.utils.RouteDecode
 import com.os.drewel.apicall.responsemodel.googledirectionresultmodel.DirectionResults
 import com.os.drewel.apicall.responsemodel.googledirectionresultmodel.Location
 import com.os.drewel.apicall.responsemodel.googledirectionresultmodel.Steps
+import java.text.DecimalFormat
 
 class AppDelegate {
 
@@ -35,6 +36,9 @@ class AppDelegate {
             snackbar.show()
 //            showToast(getInstance(),msg)
         }
+
+        val storeLat = 23.5402489
+        val storeLng = 58.380247300000065
 
         fun isValidPassword(pass2: String): Boolean {
             val PASSWORD_PATTERN = "((?=.*\\d)(?=.*[a-zA-Z]).{6,20})"
@@ -106,6 +110,7 @@ class AppDelegate {
                 Log.e("tag", "context is null at showing toast.", e)
             }
         }
+
         fun getDirectionsUrl(origin: LatLng, dest: LatLng): String {
 
             // Origin of route
@@ -122,13 +127,31 @@ class AppDelegate {
 
             // Output format
             val output = "json"
-           var mUrl = ("http://maps.googleapis.com/maps/api/directions/json?"
+            var mUrl = ("http://maps.googleapis.com/maps/api/directions/json?"
                     + "origin=" + origin.latitude + "," + origin.longitude
-                    + "&destination=" + dest.latitude + "," +  dest.longitude
-                    + "&sensor=false&units=metric&mode=driving"+"key="+"AIzaSyCCQBye-fr_k0o6BIxppxwq-5gMRiMwq0A")
+                    + "&destination=" + dest.latitude + "," + dest.longitude
+                    + "&sensor=false&units=metric&mode=driving" + "key=" + "AIzaSyCCQBye-fr_k0o6BIxppxwq-5gMRiMwq0A")
             // Building the url to the web service
 //            return "https://maps.googleapis.com/maps/api/directions/$output?$parameters"
             return mUrl
+        }
+
+        fun distance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): String {
+            val theta = lon1 - lon2
+            var dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta))
+            dist = Math.acos(dist)
+            dist = rad2deg(dist)
+            dist = dist * 60.0 * 1.1515
+            val df = DecimalFormat("0.##")
+            return df.format(dist)
+        }
+
+        fun deg2rad(deg: Double): Double {
+            return deg * Math.PI / 180.0
+        }
+
+        fun rad2deg(rad: Double): Double {
+            return rad * 180.0 / Math.PI
         }
 
         fun getStepsToDrawPolyline(directionResults: DirectionResults): ArrayList<LatLng> {

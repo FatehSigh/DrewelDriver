@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">DrewelDriver</string>
-    <string name="API_KEY">AIzaSyDYbbuGTisRVD4SZTDDkK4V15hxVKqZwkI</string>
+    <string name="API_KEY">AIzaSyDbWNBqFpi-wp88j0cPminqVWJ5qEuL3dw</string>
     <string name="orders">Orders</string>
     <string name="completed">Completed</string>
     <string name="earning">Earning</string>
@@ -31,6 +31,7 @@
     <string name="due_payment">Due Payment</string>
     <string name="notification">Notification</string>
     <string name="wallet">Wallet</string>
+    <string name="credit_card">Credit Card</string>
     <string name="faq">FAQ</string>
     <string name="notifications">Notifications</string>
     <string name="change_language">Change language</string>
@@ -60,7 +61,7 @@
     <string name="forchange_pass">Password should not match to old password.</string>
     <string name="forconpass">Please enter  confirm password.</string>
     <string name="formatch">Password does not match.</string>
-    <string name="please_enter_valid_password">Password should be 6 digits long  with at least 1 character and 1 digit.</string>
+    <string name="please_enter_valid_password">Password must contain atleast one alphabet and numeric character.</string>
     <string name="please_check_your_internet_connection">Please check your internet connection.</string>
     <string name="amount">Amount ($)</string>
     <string name="settings">Settings</string>
@@ -126,4 +127,12 @@
     <string name="UnderPackaging">Under Packaging</string>
     <string name="ReadyToDeliver">Ready To Deliver</string>
     <string name="COD">Cash On Delivery</string>
+    <string name="payment_method_colon">Payment method:</string>
+
+
+    <string name="default_notification_channel_id">32000</string>
+    <string name="default_notification_channel_name">Default Notification Channel</string>
+    <string name="default_notification_channel_description">It will deliver all notification above Android Oreo. It should be enabled to receive notification.</string>
+    <string name="collect_cash">Please collect cash and confirm.</string>
+    <string name="thawani">Thawani</string>
 </resources>

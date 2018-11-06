@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">DrewelDriver</string>
-    <string name="API_KEY">AIzaSyDYbbuGTisRVD4SZTDDkK4V15hxVKqZwkI</string>
+    <string name="API_KEY">AIzaSyDbWNBqFpi-wp88j0cPminqVWJ5qEuL3dw</string>
     <string name="orders">الطلبات</string>
     <string name="completed">اكتملت العملية</string>
     <string name="earning">المكاسب</string>
@@ -40,7 +40,7 @@
     <string name="forchange_pass">كلمة المرور يجب ان لا يكون مماثلا لكلمة المرور القديم.</string>
     <string name="forconpass">الرجاء ادخال تأكيد كلمة المرور.</string>
     <string name="formatch"> ال او تي بي غير مطابق.</string>
-    <string name="please_enter_valid_password">الرمز السري يجب ان يحتوي على حرف هيجائي واحد على الاقل  وخانة رقمية واحدة.</string>
+    <string name="please_enter_valid_password">كلمة المرور يجب  ان تحتوي على حرف هيجائي واحد  ورمز  رقمي واحد على الأقل</string>
     <string name="please_check_your_internet_connection">الرجاء التأكد من اتصالك بالشبكة.</string>
     <string name="amount">المبلغ بالدولار </string>
     <string name="settings">إعدادات</string>
@@ -93,6 +93,7 @@
 
 
     <string name="items">المنتجات</string>
+    <string name="credit_card">بطاقة الائتمان</string>
     <string name="wallet">المحفظة</string>
     <string name="contact_us">تواصل معنا</string>
     <string name="sign_out">تسجيل الخروج</string>
@@ -135,4 +136,10 @@
     <string name="UnderPackaging">الطلب قيد التنفيذ</string>
     <string name="ReadyToDeliver">مستعد لتوصيل</string>
     <string name="COD">الدفع عن الإستلام</string>
+    <string name="payment_method_colon">طريقة الدفع:</string>
+    <string name="default_notification_channel_id">32000</string>
+    <string name="default_notification_channel_name">Default Notification Channel</string>
+    <string name="default_notification_channel_description">It will deliver all notification above Android Oreo. It should be enabled to receive notification.</string>
+    <string name="collect_cash">يرجى جمع النقدية والتأكيد.</string>
+    <string name="thawani">Thawani</string>
 </resources>

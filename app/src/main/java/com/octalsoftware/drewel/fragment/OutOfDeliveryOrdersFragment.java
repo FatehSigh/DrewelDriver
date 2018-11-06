@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,6 +30,7 @@ import com.octalsoftware.drewel.retrofitService.ExecuteService;
 import com.octalsoftware.drewel.retrofitService.RequestModel;
 import com.octalsoftware.drewel.retrofitService.ResponseInterface;
 import com.octalsoftware.drewel.retrofitService.RestError;
+import com.octalsoftware.drewel.utils.NotificationRxJavaBus;
 import com.octalsoftware.drewel.utils.Prefs;
 
 import org.jetbrains.annotations.NotNull;
@@ -58,9 +60,6 @@ public class OutOfDeliveryOrdersFragment extends Fragment implements View.OnClic
         ButterKnife.bind(this, view);
         onClickListener = this;
         callNewOrderApi();
-//        IntentFilter intentFilter = new IntentFilter();
-//        intentFilter.addAction("UPDATE_DELIVER");
-//        getActivity().registerReceiver(broadcastReceiver, intentFilter);
         return view;
     }
 
@@ -76,7 +75,6 @@ public class OutOfDeliveryOrdersFragment extends Fragment implements View.OnClic
     public void onResume() {
         super.onResume();
         AppDelegate.Companion.setLocale(new Prefs(getActivity()).getDefaultLanguage(), getActivity());
-//        callNewOrderApi();
     }
 
     private void setAdapter(List<OrderModel> order) {
@@ -90,12 +88,12 @@ public class OutOfDeliveryOrdersFragment extends Fragment implements View.OnClic
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-//            Toast.makeText(context, "This is the broadcast", Toast.LENGTH_SHORT).show();
-            callNewOrderApiBroadcast();
+            if (isAdded())
+                callNewOrderApiBroadcast();
         }
     };
 
-    private void callNewOrderApiBroadcast() {
+    public void callNewOrderApiBroadcast() {
         HashMap<String, String> paramsHashMap = new HashMap<String, String>();
         paramsHashMap.put(Tags.language, new Prefs(getActivity()).getDefaultLanguage());
         paramsHashMap.put(Tags.user_id, Objects.requireNonNull(new Prefs(getActivity()).getUserdata()).user_id);
@@ -137,6 +135,15 @@ public class OutOfDeliveryOrdersFragment extends Fragment implements View.OnClic
         paramsHashMap.put(Tags.user_id, Objects.requireNonNull(new Prefs(getActivity()).getUserdata()).user_id);
         paramsHashMap.put(Tags.order_id, orderModelList.get(position).order_id);
         paramsHashMap.put(Tags.status, "3");
+
+        if (!new Prefs(getActivity()).getStringValue(Tags.LAT, "").isEmpty()) {
+            double latitude = Double.parseDouble(new Prefs(getActivity()).getStringValue(Tags.LAT, ""));
+            double longitude = Double.parseDouble(new Prefs(getActivity()).getStringValue(Tags.LNG, ""));
+
+            String distance = AppDelegate.Companion.distance(AppDelegate.Companion.getStoreLat(), AppDelegate.Companion.getStoreLng(), latitude, longitude);
+            paramsHashMap.put(Tags.distance_km, distance);
+        } else
+            paramsHashMap.put(Tags.distance_km, "0");
         RequestModel requestModel = new RequestModel();
         requestModel.setWebServiceName(ApiConstant.delivery_boy_update_order_status);
         requestModel.setWebServiceTag(ApiConstant.delivery_boy_update_order_status);
@@ -156,7 +163,7 @@ public class OutOfDeliveryOrdersFragment extends Fragment implements View.OnClic
     @Override
     public void onDestroy() {
         super.onDestroy();
-        getActivity().unregisterReceiver(broadcastReceiver);
+//        getActivity().unregisterReceiver(broadcastReceiver);
     }
 
     @Override
@@ -178,10 +185,25 @@ public class OutOfDeliveryOrdersFragment extends Fragment implements View.OnClic
                 AppDelegate.Companion.showToast(getActivity(), successMsg);
                 orderModelList.remove(position);
                 myadapter.notifyDataSetChanged();
+                NotificationRxJavaBus.Companion.getInstance().getNotificationPublishSubject().onNext("UPDATE_COMPLETED");
+                collectCashAlert(getActivity(),"",getString(R.string.collect_cash));
                 break;
         }
     }
-
+    void collectCashAlert(Context mContext, String Title, String Message) {
+        try {
+            AlertDialog.Builder mAlert = new AlertDialog.Builder(mContext);
+            mAlert.setCancelable(true);
+            mAlert.setTitle(Title);
+            mAlert.setMessage(Message);
+            mAlert.setPositiveButton(getString(R.string.ok), (dialogInterface, i) -> {
+                dialogInterface.dismiss();
+            });
+            mAlert.show();
+        } catch (Exception e) {
+            AppDelegate.Companion.LogE(e);
+        }
+    }
     @Override
     public void onFailure(String message, String webServiceTag) {
         AppDelegate.Companion.hideProgressDialog(getActivity());

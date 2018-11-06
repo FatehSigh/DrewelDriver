@@ -1,6 +1,7 @@
 package com.octalsoftware.drewel.constant
 
 object Tags {
+    const  val distance_km="delivery_km"
     const val flag = "flag"
     const val deliver_to_customer = "deliver_to_customer"
     const val TEST = "test"
@@ -75,7 +76,7 @@ object Tags {
     const val LANGUAGE_ENGLISH = "en"
     const val LANGUAGE = "LANGUAGE"
 
-
+    const val QUANTITY = "QUANTITY"
     const val notification_id = "notification_id"
     const val second_user_id = "second_user_id"
     const val profile_image = "profile_image"

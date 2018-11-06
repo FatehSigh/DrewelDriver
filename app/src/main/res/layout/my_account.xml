@@ -91,21 +91,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_35sdp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
                 android:background="@drawable/edit_text_bg"
                 android:hint="@string/first_name"
+                android:maxLength="30"
                 android:imeOptions="actionNext"
-                android:inputType="textPersonName" />
+                android:inputType="textEmailAddress" />
 
             <android.support.v7.widget.AppCompatEditText
                 android:id="@+id/txt_lastname"
                 style="@style/EditTextStyle"
+                android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_35sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/edit_text_bg"
                 android:hint="@string/last_name"
+                android:maxLength="30"
                 android:imeOptions="actionNext"
-                android:inputType="text" />
+                android:inputType="textEmailAddress" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/et_email"
@@ -119,6 +123,7 @@
                 android:inputType="textEmailAddress" />
 
             <LinearLayout
+                android:layoutDirection="ltr"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_35sdp"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -134,7 +139,7 @@
                     android:drawableRight="@mipmap/phonenumberdropdown"
                     android:hint="+91"
                     android:imeOptions="actionNext"
-                    android:inputType="text" />
+                    android:inputType="textEmailAddress" />
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/et_phone"
@@ -144,7 +149,7 @@
                     android:background="@drawable/edit_text_bg"
                     android:hint="@string/phone_number"
                     android:imeOptions="actionNext"
-                    android:inputType="textPostalAddress" />
+                    android:inputType="phone" />
             </LinearLayout>
 
             <android.support.v7.widget.AppCompatTextView
@@ -181,8 +186,9 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/edit_text_bg"
                 android:hint="@string/vehicle_number"
+                android:maxLength="30"
                 android:imeOptions="actionDone"
-                android:inputType="text" />
+                android:inputType="textEmailAddress" />
 
             <Button
                 android:id="@+id/btn_save"

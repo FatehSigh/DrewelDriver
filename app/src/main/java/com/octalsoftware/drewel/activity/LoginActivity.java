@@ -157,8 +157,8 @@ public class LoginActivity extends AppCompatActivity implements ResponseInterfac
             AppDelegate.Companion.showToast(this, getString(R.string.please_enter_password));
 //        } else if (!AppDelegate.Companion.isValidPassword(et_password.getText().toString())) {
 //            AppDelegate.Companion.showSnackBar(et_password, getString(R.string.please_enter_valid_password));
-        } else if (!AppDelegate.Companion.isValidPassword(et_password.getText().toString())) {
-            AppDelegate.Companion.showToast(this, getString(R.string.please_enter_valid_password));
+//        } else if (!AppDelegate.Companion.isValidPassword(et_password.getText().toString())) {
+//            AppDelegate.Companion.showToast(this, getString(R.string.please_enter_valid_password));
         } else if (!AppDelegate.Companion.haveNetworkConnection(this)) {
             AppDelegate.Companion.showToast(this, getString(R.string.please_check_your_internet_connection));
         } else

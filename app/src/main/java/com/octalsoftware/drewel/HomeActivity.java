@@ -36,10 +36,13 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.octalsoftware.drewel.activity.NotificationActivity;
 import com.octalsoftware.drewel.constant.Tags;
+import com.octalsoftware.drewel.fragment.AcceptedOrdersFragment;
 import com.octalsoftware.drewel.fragment.CompletedOrdersFragment;
+import com.octalsoftware.drewel.fragment.DriverLocationFragment;
 import com.octalsoftware.drewel.fragment.EarningFragment;
 import com.octalsoftware.drewel.fragment.MoreFragment;
 import com.octalsoftware.drewel.fragment.OrdersFragment;
+import com.octalsoftware.drewel.fragment.OutOfDeliveryOrdersFragment;
 import com.octalsoftware.drewel.model.NotificationsModel;
 import com.octalsoftware.drewel.model.ResponseModel;
 import com.octalsoftware.drewel.model.UserDataModel;
@@ -48,7 +51,9 @@ import com.octalsoftware.drewel.retrofitService.ExecuteService;
 import com.octalsoftware.drewel.retrofitService.RequestModel;
 import com.octalsoftware.drewel.retrofitService.ResponseInterface;
 import com.octalsoftware.drewel.retrofitService.RestError;
+import com.octalsoftware.drewel.rxbus.CartRxJavaBus;
 import com.octalsoftware.drewel.utils.LocationService;
+import com.octalsoftware.drewel.utils.NotificationRxJavaBus;
 import com.octalsoftware.drewel.utils.Prefs;
 
 import java.lang.reflect.Field;
@@ -100,6 +105,8 @@ public class HomeActivity extends AppCompatActivity implements ResponseInterface
             ButterKnife.bind(this);
             disableShiftMode(bottomNavigationView);
             mFragmentManager = getSupportFragmentManager();
+            setToolbarTitle("" + getText(R.string.orders));
+//            mFragment = new DriverLocationFragment();
             mFragment = new OrdersFragment();
             populateFragment("", mFragment);
             bottomNavigationView.setOnNavigationItemSelectedListener(navigationSelectedListener);
@@ -109,16 +116,26 @@ public class HomeActivity extends AppCompatActivity implements ResponseInterface
         }
         callDriverAvailability(1);
         initView();
+//        CartRxJavaBus.Companion.getInstance().getCartPublishSubject().subscribe(count -> {
+//            txt_counter.setText(count+"");
+//        });
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("UPDATE_COUNT");
         registerReceiver(broadcastReceiver, intentFilter);
     }
 
-    @OnClick({R.id.imv_notification_bell})
+    @OnClick({R.id.imv_notification_bell, R.id.img_location})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.imv_notification_bell:
                 startActivity(new Intent(this, NotificationActivity.class));
+                break;
+            case R.id.img_location:
+                mFragmentManager = getSupportFragmentManager();
+                setToolbarTitle("");
+                mFragment = new DriverLocationFragment();
+//              mFragment = new OrdersFragment();
+                populateFragment("", mFragment);
                 break;
         }
     }
@@ -134,6 +151,7 @@ public class HomeActivity extends AppCompatActivity implements ResponseInterface
     private void initView() {
         if (AppDelegate.Companion.isValidString(Objects.requireNonNull(new Prefs(this).getUserdata()).is_notification)) {
             isChecked = !Objects.requireNonNull(new Prefs(this).getUserdata()).is_notification.equals("0");
+//            switch_off_on_notification.setChecked(isChecked);
         }
         if (!isChecked)
             showAlert(this, "", getString(R.string.notif_turn_on));
@@ -142,6 +160,22 @@ public class HomeActivity extends AppCompatActivity implements ResponseInterface
                 callDriverAvailability(1);
             else
                 callDriverAvailability(2);
+        });
+
+        NotificationRxJavaBus.Companion.getInstance().getNotificationPublishSubject().subscribe(notificationType -> {
+            if (notificationType.equalsIgnoreCase("UPDATE_ACCEPTED")) {
+                if (mFragment instanceof AcceptedOrdersFragment)
+//                if (mFragment.isAdded())
+                    ( (AcceptedOrdersFragment)mFragment ). callNewOrderApiBroadcast();
+            } else if (notificationType.equalsIgnoreCase("UPDATE_DELIVER")) {
+                if (mFragment instanceof OutOfDeliveryOrdersFragment)
+//                    if (mFragment.isAdded())
+                        ( (OutOfDeliveryOrdersFragment)mFragment ). callNewOrderApiBroadcast();
+            } else if (notificationType.equalsIgnoreCase("UPDATE_COMPLETED")) {
+                if (mFragment instanceof CompletedOrdersFragment)
+//                    if (mFragment.isAdded())
+                        ( (CompletedOrdersFragment)mFragment ).callNewOrderApi();
+            }
         });
     }
 

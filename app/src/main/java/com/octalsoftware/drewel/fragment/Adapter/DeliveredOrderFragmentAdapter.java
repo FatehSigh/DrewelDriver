@@ -66,6 +66,8 @@ public class DeliveredOrderFragmentAdapter extends RecyclerView.Adapter<Delivere
         AppCompatTextView tv_delivery_time;
         @BindView(R.id.imv_track_order)
         ImageView imv_track_order;
+        @BindView(R.id.tv_payment_mode)
+        AppCompatTextView tv_payment_mode;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -124,6 +126,20 @@ public class DeliveredOrderFragmentAdapter extends RecyclerView.Adapter<Delivere
                 break;
             case "Delivered":
                 holder.tv_status.setText(context.getString(R.string.delivered));
+                break;
+        }
+        switch (orderModel.payment_mode) {
+            case "COD":
+                holder.tv_payment_mode.setText(context.getString(R.string.COD));
+                break;
+            case "Wallet":
+                holder.tv_payment_mode.setText(context.getString(R.string.wallet));
+                break;
+            case "Online":
+                holder.tv_payment_mode.setText(context.getString(R.string.credit_card));
+                break;
+            default:
+                holder.tv_payment_mode.setText(context.getString(R.string.thawani));
                 break;
         }
         holder.imv_track_order.setOnClickListener(new View.OnClickListener() {

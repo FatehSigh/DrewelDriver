@@ -1,9 +1,16 @@
 package com.octalsoftware.drewel.retrofitService;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import com.google.gson.internal.LinkedTreeMap;
+import com.octalsoftware.drewel.AppDelegate;
+import com.octalsoftware.drewel.HomeActivity;
+import com.octalsoftware.drewel.activity.LoginActivity;
+import com.octalsoftware.drewel.activity.SplashActivity;
 import com.octalsoftware.drewel.constant.Tags;
+import com.octalsoftware.drewel.utils.Prefs;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,10 +31,12 @@ import retrofit2.HttpException;
 class RetroCallbackUsingRx<T> implements Observer<LinkedTreeMap> {
     private ResponseInterface responseInterface;
     private String webServiceTag;
+    private Context context;
 
-    public RetroCallbackUsingRx(final ResponseInterface responseInterface, final String webServiceTag) {
+    public RetroCallbackUsingRx(final ResponseInterface responseInterface, final String webServiceTag, final Context context) {
         this.responseInterface = responseInterface;
         this.webServiceTag = webServiceTag;
+        this.context = context;
     }
 
     @Override
@@ -46,6 +55,23 @@ class RetroCallbackUsingRx<T> implements Observer<LinkedTreeMap> {
                 boolean status = jsonObject.getJSONObject(Tags.response).getBoolean(Tags.status);
                 String message = "";
                 if (status) {
+                    if (jsonObject.getJSONObject(Tags.response).has("is_deactivate")){
+                        if (jsonObject.getJSONObject(Tags.response).getString("is_deactivate").equalsIgnoreCase("1")) {
+                            try {
+                                if (new Prefs(context).getUserdata() != null) {
+                                    String defaultLanguage = new Prefs(context).getDefaultLanguage();
+                                    new Prefs(context).clearSharedPreference();
+                                    new Prefs(context).setDefaultLanguage(defaultLanguage);
+                                    Intent intent = new Intent(context, LoginActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    context.startActivity(intent);
+                                } else {
+                                }
+                            } catch (Exception e) {
+                            }
+                            return;
+                        }
+                    }
                     if (jsonObject.getJSONObject(Tags.response).has(Tags.data))
                         message = jsonObject.getJSONObject(Tags.response).getString(Tags.data);
                     if (responseInterface != null) {

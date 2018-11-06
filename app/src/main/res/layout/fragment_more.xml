@@ -21,8 +21,8 @@
                 android:id="@+id/imv_profile_img"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
                 android:src="@mipmap/notification_orange"
                 app:civ_border_color="@color/colorPrimary"
                 app:civ_border_width="@dimen/_2sdp"
@@ -55,13 +55,13 @@
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
             android:background="@android:color/darker_gray" />
-
-        <RelativeLayout
-            android:id="@+id/rel_my_account"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:layout_marginTop="@dimen/_10sdp"
-            android:background="@color/white">
+            android:elevation="@dimen/_5sdp"
+            android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tv_my_account"
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:drawableStart="@mipmap/myaccount"
-                android:drawableEnd="@mipmap/arrow"
+                android:layout_weight="1"
                 android:drawablePadding="@dimen/_10sdp"
                 android:fontFamily="@font/roboto_regular"
                 android:gravity="center_vertical"
@@ -79,7 +79,16 @@
                 android:textColor="@color/dark_gray" />
 
 
-        </RelativeLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:padding="@dimen/_10sdp"
+                android:rotation="@integer/locale_mirror_flip"
+                android:src="@mipmap/arrow" />
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
@@ -87,6 +96,7 @@
             android:background="@android:color/darker_gray" />
 
         <RelativeLayout
+            android:elevation="@dimen/_5sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -96,12 +106,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:textColor="@color/dark_gray"
-                android:drawablePadding="@dimen/_10sdp"
                 android:drawableStart="@mipmap/settings"
+                android:drawablePadding="@dimen/_10sdp"
                 android:gravity="center_vertical"
                 android:padding="@dimen/_13sdp"
-                android:text="@string/notification_setting" />
+                android:text="@string/notification_setting"
+                android:textColor="@color/dark_gray" />
 
             <android.support.v7.widget.SwitchCompat
                 android:id="@+id/switch_off_on_notification"
@@ -121,134 +131,288 @@
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
             android:background="@android:color/darker_gray" />
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/tv_change_password"
-            style="@style/Text12GreyStyleView"
-            android:layout_width="match_parent"
-            android:textColor="@color/dark_gray"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:drawableEnd="@mipmap/arrow"
-            android:drawablePadding="@dimen/_10sdp"
-            android:drawableStart="@mipmap/password"
-            android:gravity="center_vertical"
-            android:padding="@dimen/_13sdp"
-            android:text="@string/change_password" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@android:color/darker_gray" />
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/tv_about_app"
-            style="@style/Text12GreyStyleView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/dark_gray"
             android:background="@color/white"
-            android:drawableEnd="@mipmap/arrow"
-            android:drawablePadding="@dimen/_10sdp"
-            android:drawableStart="@mipmap/aboutapp"
-            android:gravity="center_vertical"
-            android:padding="@dimen/_13sdp"
-            android:text="@string/about_app" />
+            android:elevation="@dimen/_5sdp"
+            android:orientation="horizontal">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@android:color/darker_gray" />
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_change_password"
+                style="@style/Text12GreyStyleView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:drawableStart="@mipmap/password"
+                android:layout_weight="1"
+                android:drawablePadding="@dimen/_10sdp"
+                android:gravity="center_vertical"
+                android:padding="@dimen/_13sdp"
+                android:text="@string/change_password"
+                android:textColor="@color/dark_gray" />
 
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/tv_change_language"
-            style="@style/Text12GreyStyleView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/dark_gray"
-            android:background="@color/white"
-            android:drawableEnd="@mipmap/arrow"
-            android:drawablePadding="@dimen/_10sdp"
-            android:drawableStart="@mipmap/changelanguage"
-            android:gravity="center_vertical"
-            android:padding="@dimen/_13sdp"
-            android:text="@string/change_language" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:padding="@dimen/_10sdp"
+                android:rotation="@integer/locale_mirror_flip"
+                android:src="@mipmap/arrow" />
+        </LinearLayout>
+        <!--<android.support.v7.widget.AppCompatTextView-->
+            <!--android:id="@+id/tv_change_password"-->
+            <!--style="@style/Text12GreyStyleView"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/white"-->
+            <!--android:drawableStart="@mipmap/password"-->
+            <!--android:layout_weight="1"-->
+            <!--android:drawablePadding="@dimen/_10sdp"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:padding="@dimen/_13sdp"-->
+            <!--android:text="@string/change_password"-->
+            <!--android:textColor="@color/dark_gray" />-->
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
             android:background="@android:color/darker_gray" />
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/tv_contact_us"
-            android:textColor="@color/dark_gray"
-            style="@style/Text12GreyStyleView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:drawableEnd="@mipmap/arrow"
-            android:drawablePadding="@dimen/_10sdp"
-            android:drawableStart="@mipmap/contactus"
-            android:gravity="center_vertical"
-            android:padding="@dimen/_13sdp"
-            android:text="@string/contact_us" />
+            android:elevation="@dimen/_5sdp"
+            android:orientation="horizontal">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@android:color/darker_gray" />
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_about_app"
+                style="@style/Text12GreyStyleView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:drawableStart="@mipmap/aboutapp"
+                android:layout_weight="1"
+                android:drawablePadding="@dimen/_10sdp"
+                android:gravity="center_vertical"
+                android:padding="@dimen/_13sdp"
+                android:text="@string/about_app"
+                android:textColor="@color/dark_gray" />
 
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/tv_about_us"
-            style="@style/Text12GreyStyleView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/imv_contact_us"
-            android:background="@color/white"
-            android:textColor="@color/dark_gray"
-            android:drawableEnd="@mipmap/arrow"
-            android:drawablePadding="@dimen/_10sdp"
-            android:drawableStart="@mipmap/aboutus"
-            android:gravity="center_vertical"
-            android:padding="@dimen/_13sdp"
-            android:text="@string/about_us" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:padding="@dimen/_10sdp"
+                android:rotation="@integer/locale_mirror_flip"
+                android:src="@mipmap/arrow" />
+        </LinearLayout>
+
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
             android:background="@android:color/darker_gray" />
 
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/tv_rate_app"
-            style="@style/Text12GreyStyleView"
+        <!--<android.support.v7.widget.AppCompatTextView-->
+        <!--android:id="@+id/tv_change_language"-->
+        <!--style="@style/Text12GreyStyleView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/white"-->
+        <!--android:drawableStart="@mipmap/changelanguage"-->
+        <!--android:layout_weight="1"-->
+        <!--android:drawablePadding="@dimen/_10sdp"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:padding="@dimen/_13sdp"-->
+        <!--android:text="@string/change_language"-->
+        <!--android:textColor="@color/dark_gray" />-->
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:drawableEnd="@mipmap/arrow"
-            android:drawablePadding="@dimen/_10sdp"
-            android:drawableStart="@mipmap/rateapp"
-            android:textColor="@color/dark_gray"
-            android:gravity="center_vertical"
-            android:padding="@dimen/_13sdp"
-            android:text="@string/rate_app" />
+            android:elevation="@dimen/_5sdp"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_change_language"
+                style="@style/Text12GreyStyleView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:drawableStart="@mipmap/changelanguage"
+                android:layout_weight="1"
+                android:drawablePadding="@dimen/_10sdp"
+                android:gravity="center_vertical"
+                android:padding="@dimen/_13sdp"
+                android:text="@string/change_language"
+                android:textColor="@color/dark_gray" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:padding="@dimen/_10sdp"
+                android:rotation="@integer/locale_mirror_flip"
+                android:src="@mipmap/arrow" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@android:color/darker_gray" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="@dimen/_5sdp"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_contact_us"
+                style="@style/Text12GreyStyleView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:drawableStart="@mipmap/contactus"
+                android:layout_weight="1"
+                android:drawablePadding="@dimen/_10sdp"
+                android:gravity="center_vertical"
+                android:padding="@dimen/_13sdp"
+                android:text="@string/contact_us"
+                android:textColor="@color/dark_gray" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:padding="@dimen/_10sdp"
+                android:rotation="@integer/locale_mirror_flip"
+                android:src="@mipmap/arrow" />
+        </LinearLayout>
+
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
             android:background="@android:color/darker_gray" />
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/tv_logout"
-            style="@style/Text12GreyStyleView"
-            android:textColor="@color/dark_gray"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:drawablePadding="@dimen/_10sdp"
-            android:drawableStart="@mipmap/logout"
-            android:gravity="center_vertical"
-            android:padding="@dimen/_13sdp"
-            android:text="@string/logout" />
+            android:elevation="@dimen/_5sdp"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_about_us"
+                style="@style/Text12GreyStyleView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/imv_contact_us"
+                android:background="@color/white"
+                android:drawableStart="@mipmap/aboutus"
+                android:layout_weight="1"
+                android:drawablePadding="@dimen/_10sdp"
+                android:gravity="center_vertical"
+                android:padding="@dimen/_13sdp"
+                android:text="@string/about_us"
+                android:textColor="@color/dark_gray" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:padding="@dimen/_10sdp"
+                android:rotation="@integer/locale_mirror_flip"
+                android:src="@mipmap/arrow" />
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@android:color/darker_gray" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="@dimen/_5sdp"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_rate_app"
+                style="@style/Text12GreyStyleView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:drawableStart="@mipmap/rateapp"
+                android:layout_weight="1"
+                android:drawablePadding="@dimen/_10sdp"
+                android:gravity="center_vertical"
+                android:padding="@dimen/_13sdp"
+                android:text="@string/rate_app"
+                android:textColor="@color/dark_gray" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:padding="@dimen/_10sdp"
+                android:rotation="@integer/locale_mirror_flip"
+                android:src="@mipmap/arrow" />
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@android:color/darker_gray" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="@dimen/_5sdp"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_logout"
+                style="@style/Text12GreyStyleView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:drawableStart="@mipmap/logout"
+                android:drawablePadding="@dimen/_10sdp"
+                android:gravity="center_vertical"
+                android:padding="@dimen/_13sdp"
+                android:text="@string/logout"
+                android:textColor="@color/dark_gray" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:padding="@dimen/_10sdp"
+                android:rotation="@integer/locale_mirror_flip"
+                android:src="@mipmap/arrow" />
+        </LinearLayout>
+
 
     </LinearLayout>
 </ScrollView>
