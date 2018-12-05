@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -49,16 +48,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class OrderDetailActivity extends AppCompatActivity implements ResponseInterface {
-    @BindView(R.id.recyclerView)
-    RecyclerView recyclerView;
-    private SimilarOrderItemAdapter myadapter;
-
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
-    @BindView(R.id.tv_status)
-    AppCompatTextView tv_status;
-    @BindView(R.id.tv_delivery_time)
-    AppCompatTextView tv_delivery_time;
     @BindView(R.id.tv_order_place_on_date)
     public TextView tv_order_place_on_date;
     @BindView(R.id.tv_total_items)
@@ -79,6 +68,14 @@ public class OrderDetailActivity extends AppCompatActivity implements ResponseIn
     public TextView tv_order_items;
     @BindView(R.id.txt_toolbar)
     public TextView txt_toolbar;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.tv_status)
+    AppCompatTextView tv_status;
+    @BindView(R.id.tv_delivery_time)
+    AppCompatTextView tv_delivery_time;
     OrderModel orderModel;
     @BindView(R.id.btn_accept_order)
     Button btn_accept_order;
@@ -94,7 +91,10 @@ public class OrderDetailActivity extends AppCompatActivity implements ResponseIn
     boolean isCalled = false;
     @BindView(R.id.tv_payment_mode)
     AppCompatTextView tv_payment_mode;
-String phone="";
+    String phone = "";
+    OrderDetailModel orderDetailModel;
+    private SimilarOrderItemAdapter myadapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -247,7 +247,7 @@ String phone="";
 
         double latitude = Double.parseDouble(new Prefs(this).getStringValue(Tags.LAT, ""));
         double longitude = Double.parseDouble(new Prefs(this).getStringValue(Tags.LNG, ""));
-        String distance= AppDelegate.Companion.distance(AppDelegate.Companion.getStoreLat(), AppDelegate.Companion.getStoreLng(), latitude, longitude);
+        String distance = AppDelegate.Companion.distance(AppDelegate.Companion.getStoreLat(), AppDelegate.Companion.getStoreLng(), latitude, longitude);
         paramsHashMap.put(Tags.distance_km, distance);
 //        paramsHashMap.put(Tags.distance_km, "0");
 //        paramsHashMap.put(Tags.device_id, new Prefs(getActivity()).getFcMtokeninTemp());
@@ -267,8 +267,6 @@ String phone="";
         txt_norecordFound.setVisibility(View.VISIBLE);
 //      AppDelegate.Companion.showSnackBar(et_email, message);
     }
-
-    OrderDetailModel orderDetailModel;
 
     @Override
     public void onSuccess(String message, String webServiceTag, String successMsg) {
@@ -299,8 +297,18 @@ String phone="";
                 }
 
                 if (orderDetailModel.Order.order_delivery_status.equalsIgnoreCase("Ready To Deliver")) {
-                    collectCashAlert(this, "", getString(R.string.collect_cash));
-
+//                    collectCashAlert(this, "", getString(R.string.collect_cash));
+                    if (orderDetailModel.Order.payment_mode.equals("COD")) {
+                        Intent intent = new Intent();
+                        intent.putExtra(Tags.data, 1);
+                        setResult(Activity.RESULT_OK, intent);
+                        collectCashAlert(this, "", getString(R.string.collect_cash));
+                    } else {
+                        Intent intent = new Intent();
+                        intent.putExtra(Tags.data, 1);
+                        setResult(Activity.RESULT_OK, intent);
+                        finish();
+                    }
                 } else if (orderDetailModel.Order.order_delivery_status.equalsIgnoreCase("Pending")) {
                     Intent intent2 = new Intent();
                     intent2.setAction("UPDATE_ACCEPTED");

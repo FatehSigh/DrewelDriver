@@ -396,41 +396,6 @@ public class MyAccountActivity extends AppCompatActivity implements ResponseInte
         }
     }
 
-//    private void showCountryCodedialog(Boolean isShow) {
-//        if (countryModelList != null && countryModelList.size() > 0) {
-//            dialogsearch();
-//            RecyclerView dialog_list = dialogue.findViewById(R.id.dialog_list);
-//            AppCompatEditText et_search = dialogue.findViewById(R.id.et_search);
-//            dialog_list.setLayoutManager(new LinearLayoutManager(this));
-//            dialog_list.setHasFixedSize(true);
-//            dialog_list.setItemAnimator(new DefaultItemAnimator());
-//            countryCodeAdapter = new CountryCodeListAdapter(this, this, countryModelList);
-//            dialog_list.setAdapter(countryCodeAdapter);
-//
-//            et_search.addTextChangedListener(new TextWatcher() {
-//                @Override
-//                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//                }
-//
-//                @Override
-//                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//                }
-//
-//                @Override
-//                public void afterTextChanged(Editable editable) {
-//                    countryAdapter.filter(et_search.getText().toString());
-//                }
-//            });
-//            if (isShow)
-//                if (dialogue != null) {
-//                    dialogue.dismiss();
-//                    dialogue.show();
-//                }
-//        }
-//    }
-
     @Override
     public void setOnItemClick(@NotNull String tag, int position) {
         if (tag.equals(Tags.country)) {

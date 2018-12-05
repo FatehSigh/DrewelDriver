@@ -49,13 +49,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class DeliveredOrderDetailActivity extends AppCompatActivity implements ResponseInterface {
-    @BindView(R.id.recyclerView)
-    RecyclerView recyclerView;
-    @BindView(R.id.tv_status)
-    TextView tv_status;
-
-    private SimilarOrderItemAdapter myadapter;
-    private Toolbar mToolbar;
     @BindView(R.id.tv_order_place_on_date)
     public TextView tv_order_place_on_date;
     @BindView(R.id.tv_total_items)
@@ -76,6 +69,10 @@ public class DeliveredOrderDetailActivity extends AppCompatActivity implements R
     public TextView tv_order_items;
     @BindView(R.id.txt_toolbar)
     public TextView txt_toolbar;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
+    @BindView(R.id.tv_status)
+    TextView tv_status;
     OrderModel orderModel;
     PNModel pnModel;
     NotificationsModel notificationModel;
@@ -95,6 +92,10 @@ public class DeliveredOrderDetailActivity extends AppCompatActivity implements R
     ImageView imv_track_order;
     @BindView(R.id.tv_payment_mode)
     AppCompatTextView tv_payment_mode;
+    OrderDetailModel orderDetailModel;
+    private SimilarOrderItemAdapter myadapter;
+    private Toolbar mToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -184,7 +185,7 @@ public class DeliveredOrderDetailActivity extends AppCompatActivity implements R
     private void setAdapter(List<ProductModel> products) {
         LinearLayoutManager llm = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(llm);
-        myadapter = new SimilarOrderItemAdapter(products,this);
+        myadapter = new SimilarOrderItemAdapter(products, this);
         recyclerView.setAdapter(myadapter);
     }
 
@@ -233,7 +234,7 @@ public class DeliveredOrderDetailActivity extends AppCompatActivity implements R
 
         double latitude = Double.parseDouble(new Prefs(this).getStringValue(Tags.LAT, ""));
         double longitude = Double.parseDouble(new Prefs(this).getStringValue(Tags.LNG, ""));
-        String distance= AppDelegate.Companion.distance(AppDelegate.Companion.getStoreLat(), AppDelegate.Companion.getStoreLng(), latitude, longitude);
+        String distance = AppDelegate.Companion.distance(AppDelegate.Companion.getStoreLat(), AppDelegate.Companion.getStoreLng(), latitude, longitude);
         paramsHashMap.put(Tags.distance_km, distance);
 //        paramsHashMap.put(Tags.device_id, new Prefs(getActivity()).getFcMtokeninTemp());
 //        paramsHashMap.put(Tags.device_type, "android");
@@ -244,6 +245,7 @@ public class DeliveredOrderDetailActivity extends AppCompatActivity implements R
         requestModel.setParamsHashmap(paramsHashMap);
         new ExecuteService().execute(this, true, this, requestModel);
     }
+
     void collectCashAlert(Context mContext, String Title, String Message) {
         try {
             AlertDialog.Builder mAlert = new AlertDialog.Builder(mContext);
@@ -262,39 +264,58 @@ public class DeliveredOrderDetailActivity extends AppCompatActivity implements R
             AppDelegate.Companion.LogE(e);
         }
     }
+
     @Override
     public void onNoNetwork(String message, String webServiceTag) {
         AppDelegate.Companion.hideProgressDialog(this);
 //        AppDelegate.Companion.showSnackBar(et_email, message);
         txt_norecordFound.setVisibility(View.VISIBLE);
     }
-    OrderDetailModel orderDetailModel;
+
     @Override
     public void onSuccess(String message, String webServiceTag, String successMsg) {
         AppDelegate.Companion.hideProgressDialog(this);
         switch (webServiceTag) {
             case ApiConstant.get_order_detail_for_delivery_boy:
                 AppDelegate.Companion.LogT("Response ==>" + message);
-                 orderDetailModel = new Gson().fromJson(message, OrderDetailModel.class);
+                orderDetailModel = new Gson().fromJson(message, OrderDetailModel.class);
 
                 setData(orderDetailModel);
                 setAdapter(orderDetailModel.Products);
                 scrollView.setVisibility(View.VISIBLE);
                 rl_norecordfound.setVisibility(View.GONE);
-                if (From == 1) {
-                    startActivity(new Intent(this, HomeActivity.class));
-                } else if (From == 2) if (notificationModel.is_read.equals("0")) {
-                } else {
-                    Intent intent = new Intent();
-                    intent.putExtra(Tags.data, 1);
-                    setResult(Activity.RESULT_OK, intent);
-                }
-                finish();
+                if (From == 1)
+                    callReadNotificationApi(pnModel.getNotification_id());
+                else if (From == 2) if (notificationModel.is_read.equals("0"))
+                    callReadNotificationApi(notificationModel.id);
                 break;
             case ApiConstant.delivery_boy_update_order_status:
                 AppDelegate.Companion.showToast(this, successMsg);
 
-                collectCashAlert(this,"",getString(R.string.collect_cash));
+                collectCashAlert(this, "", getString(R.string.collect_cash));
+
+                if (orderDetailModel.Order.payment_mode.equals("COD")) {
+                    Intent intent = new Intent();
+                    intent.putExtra(Tags.data, 1);
+                    setResult(Activity.RESULT_OK, intent);
+                    collectCashAlert(this, "", getString(R.string.collect_cash));
+                } else {
+                    Intent intent = new Intent();
+                    intent.putExtra(Tags.data, 1);
+                    setResult(Activity.RESULT_OK, intent);
+                    finish();
+                }
+
+
+//                if (From == 1) {
+//                    startActivity(new Intent(this, HomeActivity.class));
+//                } else if (From == 2) if (notificationModel.is_read.equals("0")) {
+//                } else {
+//                    Intent intent = new Intent();
+//                    intent.putExtra(Tags.data, 1);
+//                    setResult(Activity.RESULT_OK, intent);
+//                }
+//                finish();
                 break;
             case ApiConstant.read_notification:
                 AppDelegate.Companion.LogT("Response==>" + message);
@@ -304,6 +325,7 @@ public class DeliveredOrderDetailActivity extends AppCompatActivity implements R
                 }
                 break;
         }
+
     }
 
     @SuppressLint({"SimpleDateFormat", "SetTextI18n"})
@@ -358,17 +380,17 @@ public class DeliveredOrderDetailActivity extends AppCompatActivity implements R
                 tv_payment_mode.setText(getString(R.string.thawani));
                 break;
         }
-        tv_order_amount.setText(orderDetailModel.Order.total_amount+" "+ getString(R.string.omr));
+        tv_order_amount.setText(orderDetailModel.Order.total_amount + " " + getString(R.string.omr));
         DecimalFormat df = new DecimalFormat(".##");
 //        if (orderModel != null && AppDelegate.Companion.isValidString(orderModel.distance))
-        tv_delivery_address_in_miles.setText(df.format(Double.parseDouble(orderDetailModel.Order.distance)) + " "+getString(R.string.miles));
+        tv_delivery_address_in_miles.setText(df.format(Double.parseDouble(orderDetailModel.Order.distance)) + " " + getString(R.string.miles));
         tv_delivery_order_to_person.setText(orderDetailModel.Order.deliver_to);
         tv_delivery_order_address.setText(orderDetailModel.Order.delivery_address);
         btn_call_delivery_person.setText(orderDetailModel.Order.deliver_mobile);
         imv_track_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               startActivity(new Intent(DeliveredOrderDetailActivity.this, TrackOrderActivity.class).putExtra(Tags.LAT, orderDetailModel.Order.delivery_latitude).putExtra(Tags.LNG, orderDetailModel.Order.delivery_longitude)
+                startActivity(new Intent(DeliveredOrderDetailActivity.this, TrackOrderActivity.class).putExtra(Tags.LAT, orderDetailModel.Order.delivery_latitude).putExtra(Tags.LNG, orderDetailModel.Order.delivery_longitude)
                 );
             }
         });
