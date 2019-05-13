@@ -23,6 +23,7 @@ import com.os.drewel.apicall.responsemodel.googledirectionresultmodel.DirectionR
 import com.os.drewel.apicall.responsemodel.googledirectionresultmodel.Location
 import com.os.drewel.apicall.responsemodel.googledirectionresultmodel.Steps
 import java.text.DecimalFormat
+import java.text.NumberFormat
 
 class AppDelegate {
 
@@ -127,23 +128,25 @@ class AppDelegate {
 
             // Output format
             val output = "json"
-            var mUrl = ("http://maps.googleapis.com/maps/api/directions/json?"
+            var mUrl = ("https://maps.googleapis.com/maps/api/directions/json?"
                     + "origin=" + origin.latitude + "," + origin.longitude
                     + "&destination=" + dest.latitude + "," + dest.longitude
-                    + "&sensor=false&units=metric&mode=driving" + "key=" + "AIzaSyCCQBye-fr_k0o6BIxppxwq-5gMRiMwq0A")
+                    + "&sensor=false&units=metric&mode=driving" + "&key=" + "AIzaSyD7f-U96w7RxPTkMW9UYcPEE0odwdcpGsw")
             // Building the url to the web service
 //            return "https://maps.googleapis.com/maps/api/directions/$output?$parameters"
             return mUrl
         }
 
         fun distance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): String {
+
             val theta = lon1 - lon2
             var dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta))
             dist = Math.acos(dist)
             dist = rad2deg(dist)
             dist = dist * 60.0 * 1.1515
-            val df = DecimalFormat("0.##")
-            return df.format(dist)
+             val dfInt = DecimalFormat("0.##")
+
+            return dfInt.format(dist).toString()
         }
 
         fun deg2rad(deg: Double): Double {

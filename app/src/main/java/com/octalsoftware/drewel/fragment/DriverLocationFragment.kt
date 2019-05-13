@@ -52,13 +52,13 @@ class DriverLocationFragment : Fragment(), OnMapReadyCallback, AsyncGetDirection
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater!!.inflate(R.layout.layout_track_order, container, false)
         ButterKnife.bind(this, view)
         return view
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         appBar.visibility=View.GONE
         trackOrderMapView.onCreate(savedInstanceState)
@@ -93,8 +93,8 @@ class DriverLocationFragment : Fragment(), OnMapReadyCallback, AsyncGetDirection
 
     /* set marker for destination and driver current location*/
     private fun setMarkers() {
-        var latitude = Prefs(activity).getStringValue(Tags.LAT, "")
-        var longitude = Prefs(activity).getStringValue(Tags.LNG, "")
+        var latitude = Prefs(activity!!).getStringValue(Tags.LAT, "")
+        var longitude = Prefs(activity!!).getStringValue(Tags.LNG, "")
 //
         if(!latitude.isEmpty() && !longitude.isEmpty()) {
             driverCurrentLocationLatLng = LatLng(latitude.toDouble(), longitude.toDouble())
@@ -118,8 +118,8 @@ class DriverLocationFragment : Fragment(), OnMapReadyCallback, AsyncGetDirection
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         {
-                            var latitude = Prefs(activity).getStringValue(Tags.LAT, "")
-                            var longitude = Prefs(activity).getStringValue(Tags.LNG, "")
+                            var latitude = Prefs(activity!!).getStringValue(Tags.LAT, "")
+                            var longitude = Prefs(activity!!).getStringValue(Tags.LNG, "")
 //                            var latitude = "25.262645"
 //                            var longitude = "75.5156"
                             if(!latitude.isEmpty() && !longitude.isEmpty()) {
@@ -141,8 +141,9 @@ class DriverLocationFragment : Fragment(), OnMapReadyCallback, AsyncGetDirection
     }
 
     private fun checkRequestPermission() {
-        if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION), 1)
+        if (ActivityCompat.checkSelfPermission(activity!!, Manifest.permission.ACCESS_FINE_LOCATION) !=
+                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(activity!!, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION), 1)
         } else {
             googleMap.isMyLocationEnabled = true
         }
@@ -151,7 +152,8 @@ class DriverLocationFragment : Fragment(), OnMapReadyCallback, AsyncGetDirection
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         if (requestCode == 1) {
-            if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+            if (ActivityCompat.checkSelfPermission(activity!!, Manifest.permission.ACCESS_FINE_LOCATION) !=
+                    PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(activity!!, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
                 return
             googleMap.isMyLocationEnabled = true
         }

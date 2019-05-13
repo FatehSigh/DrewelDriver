@@ -11,8 +11,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RestClient {
     //        public static String base_url = "http://192.168.1.92/drewel/web_services/";
-    public static String url = "https://56.octallabs.com/drewel/";
-    public static String base_url = "https://56.octallabs.com/drewel/web_services/";
+//    public static String url = "https://56.octallabs.com/drewel/";
+//    public static String base_url = "https://56.octallabs.com/drewel/web_services/";
+    public static String url = "http://drewel.om/";
+    public static String base_url = "http://drewel.om/web_services/";
     public static Retrofit retrofit;
 
     public static Retrofit getRestClient() {

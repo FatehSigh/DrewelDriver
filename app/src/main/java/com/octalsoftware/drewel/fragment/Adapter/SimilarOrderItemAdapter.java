@@ -38,6 +38,8 @@ public class SimilarOrderItemAdapter extends RecyclerView.Adapter<SimilarOrderIt
         public ImageView imv_product;
         @BindView(R.id.tv_name)
         public AppCompatTextView tv_name;
+        @BindView(R.id.itemQuantity)
+        public AppCompatTextView item_quantity;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -60,6 +62,8 @@ public class SimilarOrderItemAdapter extends RecyclerView.Adapter<SimilarOrderIt
             holder.tv_name.setText(productModel.ar_product_name);
         else
             holder.tv_name.setText(productModel.product_name);
+            holder.item_quantity.setText("Qty:"+productModel.quantity);
+
     }
 
     @Override

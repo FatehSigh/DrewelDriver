@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DrewelDriver</string>
+    <string name="app_name">Drewel Driver</string>
     <string name="API_KEY">AIzaSyDbWNBqFpi-wp88j0cPminqVWJ5qEuL3dw</string>
     <string name="orders">Orders</string>
     <string name="completed">Completed</string>
@@ -12,7 +12,7 @@
     <string name="delivery_date">Delivery Date:</string>
     <string name="pickup_address">Pickup Address:</string>
     <string name="delivery_address">Delivery Address:</string>
-    <string name="order_items">Order Items:</string>
+    <string name="order_items">Order Quantity:</string>
     <string name="order_id">Order ID :</string>
     <string name="details">Details</string>
     <string name="delivered">Delivered</string>

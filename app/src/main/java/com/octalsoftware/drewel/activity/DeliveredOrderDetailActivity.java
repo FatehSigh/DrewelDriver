@@ -38,10 +38,13 @@ import com.octalsoftware.drewel.retrofitService.RestError;
 import com.octalsoftware.drewel.utils.Prefs;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -235,7 +238,13 @@ public class DeliveredOrderDetailActivity extends AppCompatActivity implements R
         double latitude = Double.parseDouble(new Prefs(this).getStringValue(Tags.LAT, ""));
         double longitude = Double.parseDouble(new Prefs(this).getStringValue(Tags.LNG, ""));
         String distance = AppDelegate.Companion.distance(AppDelegate.Companion.getStoreLat(), AppDelegate.Companion.getStoreLng(), latitude, longitude);
-        paramsHashMap.put(Tags.distance_km, distance);
+
+        NumberFormat df = NumberFormat.getInstance(new Locale("en", "US"));
+        try {
+            paramsHashMap.put(Tags.distance_km, df.parse(distance).toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 //        paramsHashMap.put(Tags.device_id, new Prefs(getActivity()).getFcMtokeninTemp());
 //        paramsHashMap.put(Tags.device_type, "android");
         RequestModel requestModel = new RequestModel();
@@ -330,7 +339,7 @@ public class DeliveredOrderDetailActivity extends AppCompatActivity implements R
 
     @SuppressLint({"SimpleDateFormat", "SetTextI18n"})
     private void setData(OrderDetailModel orderDetailModel) {
-        tv_total_items.setText(orderDetailModel.Order.total_quantity);
+        tv_total_items.setText(""+orderDetailModel.Products.size());
         tv_order_items.setText(orderDetailModel.Order.total_quantity);
         try {
             Date startdate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(orderDetailModel.Order.order_date);

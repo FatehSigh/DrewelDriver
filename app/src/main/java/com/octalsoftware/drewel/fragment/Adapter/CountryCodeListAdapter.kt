@@ -14,7 +14,27 @@ import com.octalsoftware.drewel.model.CountryModel
 /**
  * Created by heena on 23/8/17.
  */
-class CountryCodeListAdapter(internal var context: Context, private var onClickItemListener: OnClickItemListener, private var countryModelArray: List<CountryModel>?) : RecyclerView.Adapter<CountryCodeListAdapter.ViewHolder>() {
+class CountryCodeListAdapter(internal var context: Context, private var onClickItemListener: OnClickItemListener, private var countryModelArray: List<CountryModel>?) :
+        RecyclerView.Adapter<CountryCodeListAdapter.ViewHolder>() {
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        if (countryModelArrayfilter!![position].name.contains("\\r\\n"))
+            holder?.txt_c_listvalue!!.text = "( +" + countryModelArrayfilter!![position].phonecode + ")     " + countryModelArrayfilter!![position].name.replace("\\r\\n", "")
+        else
+            holder?.txt_c_listvalue!!.text = "( +" + countryModelArrayfilter!![position].phonecode + ")     " + countryModelArrayfilter!![position].name
+        holder.txt_c_listvalue!!.run {
+            setOnClickListener {
+                if (onClickItemListener != null) {
+                    onClickItemListener.setOnItemClick(Tags.country_code, position)
+                }
+            }
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder {
+        return ViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.country_item, parent, false))
+    }
+
     private var countryModelArrayfilter: java.util.ArrayList<CountryModel>? = null
 
     init {
@@ -33,22 +53,6 @@ class CountryCodeListAdapter(internal var context: Context, private var onClickI
         return countryModelArrayfilter!![position]
     }
 
-    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        if (countryModelArrayfilter!![position].name.contains("\\r\\n"))
-            holder?.txt_c_listvalue!!.text = "( +" + countryModelArrayfilter!![position].phonecode + ")     " + countryModelArrayfilter!![position].name.replace("\\r\\n", "")
-        else
-            holder?.txt_c_listvalue!!.text = "( +" + countryModelArrayfilter!![position].phonecode + ")     " + countryModelArrayfilter!![position].name
-        holder.txt_c_listvalue!!.setOnClickListener({
-            if (onClickItemListener != null) {
-                onClickItemListener.setOnItemClick(Tags.country_code, position)
-            }
-        })
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-
-        return ViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.country_item, parent, false))
-    }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var txt_c_listvalue: TextView? = null

@@ -35,9 +35,12 @@ import com.octalsoftware.drewel.utils.Prefs;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -141,7 +144,13 @@ public class OutOfDeliveryOrdersFragment extends Fragment implements View.OnClic
             double longitude = Double.parseDouble(new Prefs(getActivity()).getStringValue(Tags.LNG, ""));
 
             String distance = AppDelegate.Companion.distance(AppDelegate.Companion.getStoreLat(), AppDelegate.Companion.getStoreLng(), latitude, longitude);
-            paramsHashMap.put(Tags.distance_km, distance);
+
+            NumberFormat df = NumberFormat.getInstance(new Locale("en", "US"));
+            try {
+                paramsHashMap.put(Tags.distance_km, df.parse(distance).toString());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         } else
             paramsHashMap.put(Tags.distance_km, "0");
         RequestModel requestModel = new RequestModel();

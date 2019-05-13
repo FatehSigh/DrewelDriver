@@ -31,7 +31,21 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="fitXY"
                 android:src="@android:drawable/ic_menu_camera" />
+
+
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/itemQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:gravity="center"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/white"
+            android:layout_gravity="bottom"
+            />
+
     </android.support.v7.widget.CardView>
 
     <RelativeLayout

@@ -64,7 +64,7 @@ public class GetdirectionAsync extends AsyncTask<Void, ProgressDialog, String> {
             mUrl = "http://maps.googleapis.com/maps/api/directions/json?"
                     + "origin=" + sLatitude + "," + sLongitude
                     + "&destination=" + dLatitude + "," + dLongitude
-                    + "&sensor=false&units=metric&mode=driving";
+                    + "&sensor=false&units=metric&mode=driving&key="+"AIzaSyD7f-U96w7RxPTkMW9UYcPEE0odwdcpGsw";
 
             HttpClient mHttpClient = new DefaultHttpClient(
                     getHttpParameters());

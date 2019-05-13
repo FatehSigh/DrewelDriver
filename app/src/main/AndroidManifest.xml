@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
+        android:usesCleartextTraffic="true"
         android:name="com.octalsoftware.drewel.application.DrewelApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

@@ -289,7 +289,7 @@ public class AcceptedOrderDetailActivity extends AppCompatActivity implements Re
 
     @SuppressLint({"SimpleDateFormat", "SetTextI18n"})
     private void setData(OrderDetailModel orderDetailModel) {
-        tv_total_items.setText(orderDetailModel.Order.total_quantity);
+        tv_total_items.setText(""+orderDetailModel.Products.size());
         tv_order_items.setText(orderDetailModel.Order.total_quantity);
         try {
             Date startdate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(orderDetailModel.Order.order_date);

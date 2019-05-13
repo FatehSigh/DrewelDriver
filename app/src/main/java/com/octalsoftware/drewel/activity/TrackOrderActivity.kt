@@ -146,10 +146,10 @@ class TrackOrderActivity : AppCompatActivity(), OnMapReadyCallback, AsyncGetDire
 //                            var longitude = "75.5156"
                             driverCurrentLocationLatLng = LatLng(latitude.toDouble(), longitude.toDouble())
                             driverCurrentMarker.position = driverCurrentLocationLatLng
-                            GetdirectionAsync(this, this,
-                                    driverCurrentLocationLatLng.latitude, driverCurrentLocationLatLng.longitude, deliveryLocationLatLng.latitude, deliveryLocationLatLng.longitude, "drive").execute()
+//                            GetdirectionAsync(this, this,
+//                                    driverCurrentLocationLatLng.latitude, driverCurrentLocationLatLng.longitude, deliveryLocationLatLng.latitude, deliveryLocationLatLng.longitude, "drive").execute()
 
-//                            callGetDirectionApi()
+                            callGetDirectionApi()
                         },
                         { error -> Log.e("TAG", "{$error.message}") },
                         { Log.d("TAG", "completed") })
